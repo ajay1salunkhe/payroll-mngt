@@ -24,3 +24,5 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.title
+
+class Attendance(models.Model):
