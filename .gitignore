@@ -1,0 +1,5 @@
+
+mysite/
+myvenv/
+manage.py
+*.sqlite3
