@@ -9,8 +9,8 @@ class Employee(models.Model):
     contact = models.CharField(max_length=15)
     alt_contact = models.CharField(max_length=15)
     email = models.EmailField()
-    genderchoices = (('M','Male'),('F','Female'))
-    gender = models.CharField(max_length=7,choices=gender_choices)
+    gender_choices = (('M','Male'),('F','Female'))
+    gender = models.CharField(max_length=2,choices=gender_choices)
     dob = models.DateField()
     pan_id = models.CharField(max_length=15)
     aadhar_no = models.CharField(max_length=15)
@@ -29,7 +29,7 @@ class Attendance(models.Model):
     employee = models.ForeignKey(Employee)
     date = models.DateField()
     mark_choices = ((0,'Absent'),(0.5,'Half day'),(1,'Present'))
-    mark = models.IntegerField(max_length=3,choices=mark_choices)
+    mark = models.IntegerField(choices=mark_choices)
     is_half_day = False
     def publish(self):
         if mark_choices==0:
@@ -41,4 +41,5 @@ class Attendance(models.Model):
             is_half_day=True
         self.save()
 
-#class Job
+#class JobDescription(models.Model):
+    
