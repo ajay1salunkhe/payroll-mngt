@@ -1,4 +1,4 @@
-
+# ignore files and folders
 mysite/
 myvenv/
 manage.py
