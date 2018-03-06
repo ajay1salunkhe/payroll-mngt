@@ -6,4 +6,5 @@ manage.py
 __pycache__/
 payroll/__pycache__/models.cpython-35.pyc
 payroll/__pycache__/admin.cpython-35.pyc
+*.pyc
 
