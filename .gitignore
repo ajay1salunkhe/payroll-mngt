@@ -4,3 +4,5 @@ myvenv/
 manage.py
 *.sqlite3
 __pycache__/
+payroll/__pycache__/models.cpython-35.pyc
+
