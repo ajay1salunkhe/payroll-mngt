@@ -29,7 +29,7 @@ class Attendance(models.Model):
     date = models.DateField(null=True)
     mark_choices = ((0,'Absent'),(0.5,'Half day'),(1,'Present'))
     mark = models.IntegerField(choices=mark_choices)
-    
+       
     def publish(self):
         self.save()
 
