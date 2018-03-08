@@ -1,8 +1,13 @@
 from django.db import models
 from django.utils import timezone
 
+presentdays=0
+leaves=0
 
 class Employee(models.Model):
+    '''
+       stores all the personal info about employee and its job description
+    '''
     name = models.CharField(max_length=30)
     address = models.TextField(max_length=50,null=True)
     contact = models.CharField(max_length=15)
@@ -30,16 +35,37 @@ class Employee(models.Model):
         return self.name
 
 class Attendance(models.Model):
+    '''
+    contains attendance related fields 
+    '''
     employee = models.ForeignKey(Employee)
     date = models.DateField(null=True)
     mark_choices = ((0,'Absent'),(0.5,'Half day'),(1,'Present'))
-    mark = models.IntegerField(choices=mark_choices)
+    mark = models.FloatField(choices=mark_choices)
+
+    if mark==1:
+        presentdays+=1
+    elif mark==0.5:
+        presentdays+=0.5
+    elif mark==0:
+        leaves+=1
+            
+    no_of_present_days = models.PositiveSmallIntegerField(default=0)
+    no_of_present_days = presentdays
+    no_of_leaves = models.PositiveSmallIntegerField(default=0)
+    no_of_leaves = leaves
     total_leave = models.PositiveSmallIntegerField(default=0)
     
     def publish(self):
         self.save()
 
+    def __str__(self):
+        return self.employee.name+" 's attendance details on  "+str(self.date)
+
 class Salary(models.Model):
+    '''
+    salary related info of employee like gross,net  salary, allowances and deductions 
+    '''
     employee = models.ForeignKey(Employee)
     amount = models.PositiveIntegerField()
     basic_salary_per = models.FloatField()
