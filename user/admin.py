@@ -4,6 +4,7 @@ from .models import Designation_History
 from .models import Department_History
 from .models import Job_Type_History
 from .models import Leave_History
+
 # Register your models here. "user"
 
 admin.site.register(Employee)
