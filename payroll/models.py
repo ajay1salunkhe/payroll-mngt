@@ -1,83 +1,66 @@
 from django.db import models
 from django.utils import timezone
+from datetime import datetime
+from user.models import Employee
+#from payroll.models import Salary
 
-presentdays=0
-leaves=0
+import decimal
 
-class Employee(models.Model):
-    '''
-       stores all the personal info about employee and its job description
-    '''
-    name = models.CharField(max_length=30)
-    address = models.TextField(max_length=50,null=True)
-    contact = models.CharField(max_length=15)
-    alt_contact = models.CharField(max_length=15,null=True,blank=True)
-    email = models.EmailField()
-    gender_choices = (('M','Male'),('F','Female'))
-    gender = models.CharField(max_length=2,choices=gender_choices)
-    dob = models.DateField()
-    pan_id = models.CharField(max_length=15,null=True,blank=True)
-    aadhar_no = models.CharField(max_length=15)
-    profile_pic = models.BinaryField()
-#    tax_status_choices = (("nri","NRI"),("resident","RESIDENT"),("expat","EXPAT"))
-#    tax_status = models.CharField(max_length=10,choices=tax_status_choices)
-    joining_date = models.DateField(null=True)
-    job_types = (("intern","Intern"),("working","Working"))
-    job_type = models.CharField(max_length=15,choices=job_types,default="none")
-    payment_modes = (("paycheck","Paycheck"),("direct deposit","Direct deposit"),("cash","Cash"))
-    payment_mode = models.CharField(max_length=15,choices=payment_modes,null=True)
-    bank_acc_no = models.CharField(max_length=15,null=True,blank=True)
-    
-    def publish(self):
-        self.save()
+#this is "payroll" models.py
 
-    def __str__(self):
-        return self.name
-
-class Attendance(models.Model):
-    '''
-    contains attendance related fields 
-    '''
-    employee = models.ForeignKey(Employee)
-    date = models.DateField(null=True)
-    mark_choices = ((0,'Absent'),(0.5,'Half day'),(1,'Present'))
-    mark = models.FloatField(choices=mark_choices)
-
-    if mark==1:
-        presentdays+=1
-    elif mark==0.5:
-        presentdays+=0.5
-    elif mark==0:
-        leaves+=1
-            
-    no_of_present_days = models.PositiveSmallIntegerField(default=0)
-    no_of_present_days = presentdays
-    no_of_leaves = models.PositiveSmallIntegerField(default=0)
-    no_of_leaves = leaves
-    total_leave = models.PositiveSmallIntegerField(default=0)
-    
-    def publish(self):
-        self.save()
-
-    def __str__(self):
-        return self.employee.name+" 's attendance details on  "+str(self.date)
-
+#-----------------------------------------------------------------------------------------------------------------------
 class Salary(models.Model):
     '''
     salary related info of employee like gross,net  salary, allowances and deductions 
     '''
     employee = models.ForeignKey(Employee)
-    amount = models.PositiveIntegerField()
+    date = models.DateField()
     basic_salary_per = models.FloatField()
     hra_per = models.FloatField()
-    conveyance_allow = models.PositiveIntegerField()
-    special_allow = models.PositiveIntegerField()
-    prof_tax = models.PositiveIntegerField()
-    income_tax = models.PositiveIntegerField()
-    loss_of_pay = models.PositiveIntegerField()
-    gross_salary = models.PositiveIntegerField()
-    net_salary = models.PositiveIntegerField()
+    conveyance_allow = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    special_allow = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    prof_tax = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    income_tax = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    loss_of_pay = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    gross_earning = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    gross_deduction = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    total_days = models.PositiveSmallIntegerField(default=0)
+    weekly_off = models.PositiveSmallIntegerField(default=0)
+    public_holidays = models.PositiveSmallIntegerField(default=0)
+    paid_days = models.PositiveSmallIntegerField(default=0)
+    net_salary = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
 
     def publish(self):
         self.save()
-    
+
+    def __str__(self):
+        return self.employee.name+" 's Salary details on date :  "+str(self.date)
+#-----------------------------------------------------------------------------------------------------------------------
+class Salary_History(models.Model):
+    '''
+    salary related info of employee like gross,net  salary, allowances and deductions 
+    '''
+    employee = models.ForeignKey(Employee)
+    salary_id = models.ForeignKey("payroll.Salary")
+    date = models.DateField()
+    basic_salary_per = models.FloatField()
+    hra_per = models.FloatField()
+    conveyance_allow = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    special_allow = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    prof_tax = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    income_tax = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    loss_of_pay = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    gross_earning = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    gross_deduction = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+    total_days = models.PositiveSmallIntegerField(default=0)
+    weekly_off = models.PositiveSmallIntegerField(default=0)
+    public_holidays = models.PositiveSmallIntegerField(default=0)
+    paid_days = models.PositiveSmallIntegerField(default=0)
+    net_salary = models.DecimalField(decimal_places=2,max_digits=10,default=decimal.Decimal('0.0000000000'))
+
+    def publish(self):
+        self.save()
+
+    def __str__(self):
+        return self.employee.name+" 's Salary History details on date :  "+str(self.date)
+#-----------------------------------------------------------------------------------------------------------------------
