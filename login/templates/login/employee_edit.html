@@ -1,0 +1,127 @@
+{% extends 'index.html'%}
+{% load staticfiles %}
+
+
+
+                        <div class="col-sm-7">
+                        <form method="POST" class="employee-form">
+
+					<div class="alert alert-primary" role="alert">
+						Personal Info
+					</div>
+ 
+				        <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon1">Name : </span>
+					  </div>
+					  <input type="text" class="form-control" placeholder="Enter Employee Name here" maxlength="255">
+					</div>	 
+
+				        <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon3">Address : </span>
+					  </div>
+					  <input type="text" class="form-control" placeholder="Enter Address here" maxlength="255">
+					</div>	
+
+				        <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon2">Contact : </span>
+					  </div>
+					  <input type="text" class="form-control" placeholder="Enter Contact here" maxlength="255">
+					</div>	
+				    	
+                                        <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon2">Alt Contact : </span>
+					  </div>
+					  <input type="text" class="form-control" placeholder="Enter Alt Contact here" maxlength="255">
+					</div>
+			    
+                                        <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon5">Email : </span>
+					  </div>
+					  <input type="text" class="form-control" placeholder="Enter email here" maxlength="255">
+					</div>	
+
+				        <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon4">Date of Birth : </span>
+					  </div>
+					  <input type="date" class="form-control" placeholder="Enter DOB here">
+					</div>				    
+
+				    	<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <label class="input-group-text" for="inputGroupSelect01">Gender :</label>
+					  </div>
+					  <select class="custom-select" id="inputGroupGender">
+					    <option selected>Choose...</option>
+					    <option value="1">Male</option>
+					    <option value="2">Female</option>
+					  </select>
+					</div>
+
+					<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text">Profile Pic : </span>
+					  </div>
+					  <div class="custom-file">
+					    <input type="file" class="custom-file-input" id="inputGroupFile01">
+					    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+					  </div>
+					</div>
+
+					<div class="alert alert-primary" role="alert">
+						Company related Details
+					</div>  
+
+				        <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon4">Joining Date : </span>
+					  </div>
+					  <input type="date" class="form-control" placeholder="">
+					</div>
+
+					<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <label class="input-group-text" for="inputGroupSelect01">Designation :</label>
+					  </div>
+					  <select class="custom-select" id="inputGroupMark">
+					    <option selected>Choose...</option>
+					    <option value="1">Designation 1</option>
+					    <option value="2">Designation 2</option>
+					    <option value="3">Designation 3</option>
+					  </select>
+					</div>	                           
+
+					<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <label class="input-group-text" for="inputGroupSelect01">Department :</label>
+					  </div>
+					  <select class="custom-select" id="inputGroupMark">
+					    <option selected>Choose...</option>
+					    <option value="1">Department 1</option>
+					    <option value="2">Department 2</option>
+					    <option value="3">Department 3</option>
+					  </select>
+					</div>	                        
+
+					<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <label class="input-group-text" for="inputGroupSelect01">Job Type :</label>
+					  </div>
+					  <select class="custom-select" id="inputGroupMark">
+					    <option selected>Choose...</option>
+					    <option value="1">Job Type 1</option>
+					    <option value="2">Job Type 2</option>
+					    <option value="3">Job Type 3</option>
+					  </select>
+					</div>	                                      
+
+				    <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+
+                        </form>
+                        </div>
+                        

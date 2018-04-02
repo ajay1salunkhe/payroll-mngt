@@ -1,0 +1,60 @@
+{% extends 'index.html'%}
+{% load staticfiles %}
+
+<div>
+{% block content %}
+
+           <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Email</th>
+                  <th>Date of Birth</th>
+                </tr>
+              </thead>
+              {% for obj in object_list %}
+              <tbody>
+                <tr>
+                  <td>{{obj.name}}</td>
+                  <td>{{obj.address}}</td>
+                  <td>{{obj.email}}</td>
+                  <td>{{obj.dob}}</td>
+                </tr>
+              </tbody>
+             {% endfor %}
+            </table>
+           </div>
+{% endblock %}
+</div>
+
+
+
+
+<!--
+
+<div class="container">
+    <div class="row">
+        {% for obj in object_list %}
+        <div class="col-sm">
+            <div class="alert alert-success" role="alert">
+                {{obj.name}}
+
+            </div></div>
+            <div class="col-sm">
+                {{obj.address}}
+            </div>
+            <div class="col-sm">
+                {{obj.contact}}
+            </div>
+            <div class="col-sm">
+                {{obj.email}}
+            </div>
+            <div class="col-sm">
+                {{obj.gender}}
+            </div>
+            {% endfor %}
+        </div>
+        { endblock %}
+-->

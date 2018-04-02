@@ -1,0 +1,16 @@
+<!--DOCTYPE html-->
+<html>
+  <body>
+    <h1>  Wellcome   {{abc}}{{xyz}}!!!</h1>
+    {% for obj in Name %}
+    <h1> {{obj.id}}</h1><br>
+    {{obj.first_name}}<br>
+    {{obj.last_name}}<br>
+    {{obj.address}}<br>
+    {% endfor %}
+</body>
+</htmll>
+
+
+
+
