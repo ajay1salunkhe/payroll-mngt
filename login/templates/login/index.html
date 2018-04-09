@@ -21,8 +21,15 @@
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
       <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link" href="{% url 'login' %}">Log out</a>
+          <li class="nav-item text-nowrap">
+              <div class="row">
+                  <div class="col">
+                      <a class="nav-link">Welcome <b style="color: orange;">{{ request.user.username }}</b></a>
+                  </div>
+                  <div class="col">
+                      <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                   </div>
+              </div>
         </li>
       </ul>
     </nav>
@@ -45,7 +52,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'company_display' %}">
                   <span data-feather="briefcase"></span>
                   Company
                 </a>
@@ -57,7 +64,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="salary.html">
+                <a class="nav-link" href="{% url 'salary' %}">
                   <span data-feather="dollar-sign"></span>
                   Salary
                 </a>

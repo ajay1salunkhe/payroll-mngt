@@ -22,7 +22,7 @@
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="{% url 'login' %}">Log out</a>
+          <a class="nav-link" href="{% url 'logout' %}">Log out</a>
         </li>
       </ul>
     </nav>
@@ -45,7 +45,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'company:company_display' %}">
                   <span data-feather="briefcase"></span>
                   Company
                 </a>
@@ -57,7 +57,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="salary.html">
+                <a class="nav-link" href="{% url 'salary' %}">
                   <span data-feather="dollar-sign"></span>
                   Salary
                 </a>
@@ -124,7 +124,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <!-- my comment
+    <!-- my commentnce/base.html'%}
+{% load staticfiles %}
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../../../assets/js/vendor/popper.min.js"></script>
@@ -132,7 +134,6 @@
     -->
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

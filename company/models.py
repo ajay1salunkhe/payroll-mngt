@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.utils import timezone
 from datetime import datetime
@@ -8,8 +9,8 @@ import decimal
 #-----------------------------------------------------------------------------------------------------------------------
 class Company(models.Model):
     name = models.CharField(max_length = 50)
-    address_line1 = models.TextField(max_length = 50)
-    address_line2 = models.TextField(max_length = 50)
+    address = models.TextField(max_length = 50)
+    #address_line2 = models.TextField(max_length = 50)
     city = models.CharField(max_length = 20)
     state = models.CharField(max_length = 20)
     country = models.CharField(max_length = 20)

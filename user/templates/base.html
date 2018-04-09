@@ -2,34 +2,45 @@
 {% load staticfiles %}
 
 <div>
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Employee Details</h1>
-            <button type="button" onclick="window.location.href='{% url 'employee_add' %}'" class="btn btn-primary">Add Employee</button>
-          </div>
-{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Employee Details</h1>
+        <button type="button" onclick="window.location.href='{% url 'employee_add' %}'" class="btn btn-primary">Add Employee</button>
+    </div>
+    {% block content %}
 
-           <div class="table-responsive">
-            <table class="table table-striped table-sm">
-              <thead>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Address</th>
-                  <th>Email</th>
-                  <th>Date of Birth</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Action</th>
                 </tr>
-              </thead>
-              {% for obj in object_list %}
-              <tbody>
+            </thead>
+            {% for obj in object_list %}
+            <tbody>
                 <tr>
-                  <td>{{obj.name}}</td>
-                  <td>{{obj.address}}</td>
-                  <td>{{obj.email}}</td>
-                  <td>{{obj.dob}}</td>
+                    <td>{{obj.name}}</td>
+                    <td>{{obj.address}}</td>
+                    <td>{{obj.email}}</td>
+                    <td>{{obj.dob}}</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <button type="button" onclick="window.location.href='{% url 'user:employee_update' pk=obj.pk %}'" class="btn btn-primary">Edit</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" onclick="window.location.href=''" class="btn btn-danger">delete</button>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
-              </tbody>
-             {% endfor %}
-            </table>
-           </div>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
 
-{% endblock %}
+    {% endblock %}
 </div>

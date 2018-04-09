@@ -2,9 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime
 from company.models import Company
-#from attendance.models import Attendance
 
-#this is "user" models.py
 
 #-----------------------------------------------------------------------------------------------------------------------
 class Employee(models.Model):
@@ -29,7 +27,9 @@ class Employee(models.Model):
                              )
     aadhar_no = models.CharField(max_length=15)
     profile_pic = models.ImageField(upload_to = 'user_profiles/',
-                                    default = 'none/no_profile.png'
+                                    default = 'none/no_profile.png',
+                                    null = True,
+                                    blank = True
                                    )
     probation_period = models.PositiveSmallIntegerField(default=0)
     company_id = models.ForeignKey('company.Company')

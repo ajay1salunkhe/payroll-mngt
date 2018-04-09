@@ -7,6 +7,7 @@ import login.urls
 import attendance.urls
 
 urlpatterns = [
-    url(r'^$', views.employee_display,name="employee_display"),
-    url(r'^add/$', views.employee_add,name="employee_add"),
+    url(r'^employee/$', views.employee_display,name="employee_display"),
+    url(r'^employee/add/$', views.employee_add,name="employee_add"),
+    url(r'^employee/(?P<pk>\d+)/update/$',views.employee_update,name="employee_update"),
 ]

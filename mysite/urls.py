@@ -23,10 +23,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^payroll/',include('payroll.urls')),
     url(r'',include('login.urls')),
-    url(r'^attendance/',include('attendance.urls',namespace="attendance")),
-    #url(r'^accounts/',include('accounts.urls')),
-    #url(r'',include('user.urls',namespace="user")),
-    url(r'^employee/',include('user.urls',namespace="user")),
+    url(r'^/',include('attendance.urls',namespace="attendance")),
+    url(r'^/',include('company.urls',namespace="company")),
+    url(r'^/',include('user.urls',namespace="user")),
+    url(r'^/',include('payroll.urls',namespace="salary")),
 ]
 
 if settings.DEBUG:

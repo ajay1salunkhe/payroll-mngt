@@ -2,8 +2,9 @@ from django.conf.urls import url
 from . import views
 import login.urls
 import user.urls
+import company.urls
 
 urlpatterns = [
-    url(r'', views.attendance, name='attendance'),
-    url(r'^history/$', views.attendance_history, name='attendance_history'),
+    url(r'^attendance/$', views.attendance, name='attendance'),
+    url(r'^attendance/history/$', views.attendance_history, name='attendance_history'),
 ]

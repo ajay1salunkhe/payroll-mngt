@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from .models import Employee
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+@login_required
+def salary(request):
+    return render(request,'payroll/salary.html')
 
-def post_list(request):
-    employees = Employee.objects.filter(joining_date__lte=timezone.now()).order_by('joining_date')
-    return render(request,'payroll/post_list.html',{'employees':employees})
+@login_required
+def salary_history(request):
+    return render(request, 'payroll/salary_history.html')
