@@ -1,0 +1,88 @@
+{% extends 'company/base.html'%}
+{% load staticfiles %}
+
+{% block content %}
+
+<div>
+        <div class="alert alert-info">
+            <strong>Designations</strong>
+        </div>
+
+    <div class="form_company">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- <div class="input-group mb-3">
+                 <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon1">Company Name: </span>
+                 </div>
+                 {{ form.company }}
+                 </div>
+            -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">Designation : </span>
+                </div>
+                {{ form.designation }}
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">Privilege Leave : </span>
+                </div>
+                {{ form.privilege_leave }}
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">Casual Leave : </span>
+                </div>
+                {{ form.casual_leave }}
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">Salary : </span>
+                </div>
+                {{ form.salary }}
+            </div>
+
+            <br>
+            <center>
+                <button class="btn btn-lg btn-primary" type="submit">Add</button>
+            </center>
+        </form>
+    </div>
+
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Designation</th>
+                    <th>Privilege leaves</th>
+                    <th>Casual leaves</th>
+                    <th>Salary</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            {% for obj in designations %}
+            <tbody>
+                <tr>
+                    <td>{{obj.designation}}</td>
+                    <td>{{obj.privilege_leave}}</td>
+                    <td>{{obj.casual_leave}}</td>
+                    <td>{{obj.salary}}</td>
+                    <td>
+
+                        <button type="button" class="btn btn-warning" onclick="window.location.href=''" class="btn btn-primary">Edit</button>
+
+                        <button type="button" class="btn btn-danger" onclick="window.location.href='{% url 'company:designation_delete' id=obj.id %}'" class="btn btn-primary">Delete</button>
+
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+    {% endblock %}

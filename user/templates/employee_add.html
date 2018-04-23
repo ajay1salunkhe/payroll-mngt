@@ -8,6 +8,34 @@
     <form method="POST" class="employee_form" enctype="multipart/form-data">
         {% csrf_token %}
 
+        <!-- {{ form1.as_p }}
+             <hr>
+             {{ form2.as_p }} -->
+        <div class="alert alert-primary" role="alert">
+            User Info
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Name : </span>
+            </div>
+            {{ form1.username }}
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon5">Email : </span>
+            </div>
+            {{ form1.email }}
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon5">Password : </span>
+            </div>
+            {{ form1.password }}
+        </div>
+
 
         <div class="alert alert-primary" role="alert">
             Personal Info
@@ -17,64 +45,56 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Name : </span>
             </div>
-            {{ form.name }}
-            {{ form.name.errors }}
+            {{ form2.name }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">Address : </span>
             </div>
-            {{ form.address }}
+            {{ form2.address }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon2">Contact : </span>
             </div>
-            {{ form.contact }}
+            {{ form2.contact }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon2">Alt Contact : </span>
             </div>
-            {{ form.alt_contact }}
-        </div>
-
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon5">Email : </span>
-            </div>
-            {{ form.email }}
+            {{ form2.alt_contact }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon4">Date of Birth : </span>
             </div>
-            {{ form.dob }}
+            {{ form2.dob }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon_pan">Pan ID : </span>
             </div>
-            {{ form.pan_id }}
+            {{ form2.pan_id }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon_aadhar">Aadhar No : </span>
             </div>
-            {{ form.aadhar_no }}
+            {{ form2.aadhar_no }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">Gender :</label>
             </div>
-            {{ form.gender }}
+            {{ form2.gender }}
         </div>
 
         <div class="input-group mb-3">
@@ -82,7 +102,7 @@
                 <span class="input-group-text">Profile Pic : </span>
             </div>
             <div class="custom-file">
-            {{ form.profile_pic }}
+                {{ form2.profile_pic }}
             </div>
         </div>
 
@@ -90,15 +110,18 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon">Probation Period : </span>
             </div>
-            {{ form.probation_period }}
+            {{ form2.probation_period }}
         </div>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addo">Company : </span>
-            </div>
-            {{ form.company_id }}
+        <div>
+            {{ form3.as_p }}
         </div>
+        <!-- <div class="input-group mb-3">
+             <div class="input-group-prepend">
+             <span class="input-group-text" id="basic-addo">Company : </span>
+             </div>
+             {{ form.company_id }}
+             </div> -->
 
         <!-- <div class="alert alert-primary" role="alert">
              Company related Details

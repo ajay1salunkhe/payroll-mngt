@@ -1,0 +1,338 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="payroll_logo.png">
+
+        <title>Welcome</title>
+
+        <!-- Bootstrap Complete CSS V4.0 -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- Custom styles for this template -->
+        <link href="styles.css" rel="stylesheet">
+        <link href="{% static 'css/product.css' %}" rel="stylesheet">
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <nav class="site-header sticky-top py-1">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2" href="#">
+                    <img src="{% static 'images/payroll_logo.png' %}" height="50" width="50"></img>
+                </a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Services</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">About Us</a>
+            </div>
+        </nav>
+
+
+        <div class="container-fluid">
+            <!-- <header>
+                 Sign Up
+                 </header> -->
+            <div>
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-warning">
+                            <center>
+                                <strong style="font-size: x-large">Sign Up</strong>
+                            </center>
+                        </div>
+                        <hr>
+                        <div class="form_company" style="width: 1000px;">
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="alert alert-info">
+                                    <strong>Company Details</strong>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Company Name: </span>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Company name here" aria-label="" aria-describedby="basic-addon1"> -->
+                                    {{ form1.namec }}
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">Address: </span>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter address here" aria-label="" aria-describedby="basic-addon2"> -->
+                                    {{ form1.address }}
+                                </div>
+                                <br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Country:</label>
+                                    </div>
+                                    <!-- <select class="custom-select" id="inputGroupSelect01">
+                                         </select> -->
+                                    {{ form1.country }}
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="inputGroupSelect02">State:</label>
+                                            </div>
+                                            <!-- <select class="custom-select" id="inputGroupSelect02">
+                                                 </select> -->
+                                            {{ form1.state }}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="inputGroupSelect03">City:</label>
+                                            </div>
+                                            <!-- <select class="custom-select" id="inputGroupSelect03">
+                                                 </select> -->
+                                            {{ form1.city }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon3">Postal Code: </span>
+                                            </div>
+                                            <!-- <input type="text" class="form-control" placeholder="Enter Postal code here" aria-label="" aria-describedby="basic-addon3"> -->
+                                            {{ form1.postal_code }}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon4">Fax: </span>
+                                            </div>
+                                            <!-- <input type="text" class="form-control" placeholder="Enter fax here" aria-label="" aria-describedby="basic-addon4"> -->
+                                            {{ form1.fax }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon5">Website: </span>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter website here" aria-label="" aria-describedby="basic-addon5"> -->
+                                    {{ form1.website }}
+                                </div>
+                                <hr>
+                                <div class="alert alert-info">
+                                    <strong>Admin Details</strong>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Username: </span>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Company name here" aria-label="" aria-describedby="basic-addon1"> -->
+                                    {{ form2.username }}
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Email: </span>
+                                    </div>
+                                    {{ form2.email }}
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Password: </span>
+                                    </div>
+                                    {{ form2.password }}
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Confirm Password: </span>
+                                    </div>
+                                    {{ form2.password }}
+                                </div>
+                                <!-- <div class="row">
+                                     <div class="col">
+                                     <div class="input-group mb-3">
+                                     <div class="input-group-prepend">
+                                     <div class="input-group-text">
+                                     {{ form2.is_staff }}
+                                     </div>
+                                     <div style="margin-left: 8px;">
+                                     Is_Staff
+                                     </div>
+                                     </div>
+                                     </div>
+                                     </div>
+                                     <div class="col">
+                                     <div class="input-group mb-3">
+                                     <div class="input-group-prepend">
+                                     <div class="input-group-text">
+                                     {{ form2.is_superuser }}
+                                     </div>
+                                     <div style="margin-left: 8px;">
+                                     Make SuperUser
+                                     </div>
+                                     </div>
+                                     </div>
+                                     </div>
+                                     </div> -->
+                                <hr>
+                                <div class="alert alert-info">
+                                    <strong>Employment Details</strong>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Name : </span>
+                                    </div>
+                                    {{ form3.name }}
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">Address : </span>
+                                    </div>
+                                    {{ form3.address }}
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon2">Contact : </span>
+                                            </div>
+                                            {{ form3.contact }}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon2">Alt Contact : </span>
+                                            </div>
+                                            {{ form3.alt_contact }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon4">Date of Birth : </span>
+                                            </div>
+                                            {{ form3.dob }}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="inputGroupSelect01">Gender :</label>
+                                            </div>
+                                            {{ form3.gender }}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon_pan">Pan ID : </span>
+                                            </div>
+                                            {{ form3.pan_id }}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon_aadhar">Aadhar No : </span>
+                                            </div>
+                                            {{ form3.aadhar_no }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Profile Pic : </span>
+                                    </div>
+                                    <div class="custom-file">
+                                        {{ form3.profile_pic }}
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon">Probation Period : </span>
+                                    </div>
+                                    {{ form3.probation_period }}
+                                </div>
+                                {{ form4.as_p }}
+                                <hr>
+                                <center>
+                                    <button class="btn btn-lg btn-primary" type="submit">Sign Up</button>
+                                </center>
+                                <hr>
+                            </form>
+                        </div>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div>
+        </div>
+
+
+        <footer class="container py-5">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <center><img src="{% static 'images/payroll_logo.png' %}" height="24" width="24"></img>
+                        <small class="d-block mb-3 text-muted">&copy; 2017-2018</small></center>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Features</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Cool stuff</a></li>
+                        <li><a class="text-muted" href="#">Random feature</a></li>
+                        <li><a class="text-muted" href="#">Team feature</a></li>
+                        <li><a class="text-muted" href="#">Stuff for developers</a></li>
+                        <li><a class="text-muted" href="#">Another one</a></li>
+                        <li><a class="text-muted" href="#">Last time</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="col-6 col-md">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Team</a></li>
+                        <li><a class="text-muted" href="#">Locations</a></li>
+                        <li><a class="text-muted" href="#">Privacy</a></li>
+                        <li><a class="text-muted" href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+         feather.replace()
+        </script>
+
+        <script>
+         Holder.addTheme('thumb', {
+             bg: '#55595c',
+             fg: '#eceeef',
+             text: 'Thumbnail'
+         });
+        </script>
+    </body>
+</html>

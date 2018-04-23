@@ -1,7 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils import timezone
 from datetime import datetime
-from company.models import Company
+from company.models import Company, Designation, Department,JobType
+#from django.contrib.auth.models import AbstractUser
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -9,11 +13,12 @@ class Employee(models.Model):
     '''
        stores all the personal info about employee and its job description
     '''
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     address = models.TextField(max_length=50,null=True)
     contact = models.CharField(max_length=15)
     alt_contact = models.CharField(max_length=15,null=True,blank=True)
-    email = models.EmailField()
+#    email = models.EmailField()
     gender_choices = (('M','Male'),
                       ('F','Female')
                      )
@@ -32,17 +37,26 @@ class Employee(models.Model):
                                     blank = True
                                    )
     probation_period = models.PositiveSmallIntegerField(default=0)
+    is_admin = models.NullBooleanField()
     company_id = models.ForeignKey('company.Company')
     
-    def publish(self):
-        self.save()
 
     def __str__(self):
         return self.name
 #-----------------------------------------------------------------------------------------------------------------------
+#code from simpleisbetterthancomplex.com
+# @receiver(post_save, sender=User)
+# def create_user_employee(sender, instance, created, **kwargs):
+#     if created:
+#         Employee.objects.create(user=instance)
+        
+# @receiver(post_save, sender=User)
+# def save_user_employee(sender, instance, **kwargs):
+#     instance.employee.save()
+#-----------------------------------------------------------------------------------------------------------------------
 class DesignationHistory(models.Model):
     employee = models.ForeignKey(Employee)
-    designation_id = models.ForeignKey(Company)
+    designation = models.ForeignKey(Designation,null=True)
     date = models.DateField()
     
     def publish(self):

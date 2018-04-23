@@ -1,0 +1,117 @@
+{% extends 'company/base.html'%}
+{% load staticfiles %}
+
+{% block content %}
+
+<div>
+    <div class="alert alert-info">
+        <strong>Basic Info</strong>
+    </div>
+    <div class="form_company">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Company Name: </span>
+                </div>
+                <!-- <input type="text" class="form-control" placeholder="Enter Company name here" aria-label="" aria-describedby="basic-addon1"> -->
+                {{ form.namec }}
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">Address: </span>
+                </div>
+                <!-- <input type="text" class="form-control" placeholder="Enter address here" aria-label="" aria-describedby="basic-addon2"> -->
+                {{ form.address }}
+            </div>
+            <br>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Country:</label>
+                </div>
+                <!-- <select class="custom-select" id="inputGroupSelect01">
+                     </select> -->
+                {{ form.country }}
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect02">State:</label>
+                        </div>
+                        <!-- <select class="custom-select" id="inputGroupSelect02">
+                             </select> -->
+                        {{ form.state }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect03">City:</label>
+                        </div>
+                        <!-- <select class="custom-select" id="inputGroupSelect03">
+                             </select> -->
+                        {{ form.city }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Postal Code: </span>
+                        </div>
+                        <!-- <input type="text" class="form-control" placeholder="Enter Postal code here" aria-label="" aria-describedby="basic-addon3"> -->
+                        {{ form.postal_code }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon4">Fax: </span>
+                        </div>
+                        <!-- <input type="text" class="form-control" placeholder="Enter fax here" aria-label="" aria-describedby="basic-addon4"> -->
+                        {{ form.fax }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon5">Website: </span>
+                </div>
+                <!-- <input type="text" class="form-control" placeholder="Enter website here" aria-label="" aria-describedby="basic-addon5"> -->
+                {{ form.website }}
+            </div>
+
+            <br>
+            <center><button class="btn btn-lg btn-primary" type="submit">Submit</button></center>
+        </form>
+    </div>
+    <hr>
+    <div class="alert alert-info">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-md btn-info" onclick="window.location.href='{% url 'company:holiday_add' %}'" >+ Holidays</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-md btn-info" onclick="window.location.href='{% url 'company:worktype_add' %}'" >+ WorkTypes</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-md btn-info" onclick="window.location.href='{% url 'company:designation_add' %}'" >+ Designations</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-md btn-info" onclick="window.location.href='{% url 'company:department_add' %}'" >+ Departments</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-md btn-info" onclick="window.location.href='{% url 'company:job_type_add' %}'" >+ JobTypes</button>
+            </div>
+        </div>
+   </div>
+   <hr>
+
+
+    {% endblock %}

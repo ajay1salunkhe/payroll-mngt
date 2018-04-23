@@ -29,10 +29,7 @@
                     <td>
                         <div class="row">
                             <div class="col-sm-3">
-                                <button type="button" onclick="window.location.href='{% url 'user:employee_update' pk=obj.pk %}'" class="btn btn-primary">Edit</button>
-                            </div>
-                            <div class="col-sm-3">
-                                <button type="button" onclick="window.location.href=''" class="btn btn-danger">delete</button>
+                                <button type="button" onclick="window.location.href='{% url 'user:employee_update' pk=obj.user_id %}'" class="btn btn-primary">Edit</button>
                             </div>
                         </div>
                     </td>

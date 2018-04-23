@@ -1,6 +1,8 @@
 from django.forms import ModelForm
-from .models import Employee
+from .models import Employee, DesignationHistory, DepartmentHistory, JobTypeHistory, LeaveHistory
+from company.models import Designation
 from django import forms
+from django.contrib.auth.models import User
 from django.contrib.admin.widgets import AdminDateWidget
 from django.contrib.admin import widgets
 from django.forms.fields import DateField
@@ -9,7 +11,42 @@ from django.shortcuts import redirect
 
 class DateInput(forms.DateInput):
     input_type='date'
-    
+
+class user_add_form(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'password',
+            'email',
+#            'is_staff',
+#           'is_superuser'
+        )
+        widgets = {
+            'username': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder':'Username',
+                    'maxlength':'255'
+                }
+            ),
+            'email': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder':'Enter email here',
+                    'maxlength':'255'
+                }
+            ),
+            'password': forms.PasswordInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder':'Password',
+                    'maxlength':'255'
+                }
+            ),            
+        }
+
+        
 class employee_add_form(forms.ModelForm):
     class Meta:
         model = Employee
@@ -18,14 +55,14 @@ class employee_add_form(forms.ModelForm):
             'address',
             'contact',
             'alt_contact',
-            'email',
+#            'email',
             'gender',
             'dob',
             'pan_id',
             'aadhar_no',
             'profile_pic',
             'probation_period',
-            'company_id'
+#            'company_id'
         )
         widgets = {
             'name': forms.TextInput(
@@ -111,20 +148,25 @@ class employee_add_form(forms.ModelForm):
                 }
             ),
         }
-
+        
+        
     def clean(self):
         cleaned_data=self.cleaned_data
         name=cleaned_data.get('name')
         email=cleaned_data.get('email')
 
-        try:
-            employees=Employee.objects.all()
-            for n in employees:
-                s=str(n)
-                if name==s:
-                    print("duplicate entry : ",s)
-                    return redirect('employee_add')
-        except:
-            print("name duplicate success")
-    
+        if Employee.objects.filter(name=name).exists():
+            print("name already exists")
 
+class employee_designation_form(forms.ModelForm):
+    class Meta:
+        model = DesignationHistory
+        fields = (
+#            'employee',
+            'designation',
+#            'date',
+        )
+
+    def __init__(self,temp,*args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['designation'].queryset = Designation.objects.filter(company_id=temp)

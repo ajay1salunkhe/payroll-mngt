@@ -8,8 +8,8 @@ import decimal
 
 #-----------------------------------------------------------------------------------------------------------------------
 class Company(models.Model):
-    name = models.CharField(max_length = 50)
-    address = models.TextField(max_length = 50)
+    namec = models.CharField(max_length = 50)
+    address = models.TextField(max_length = 150)
     #address_line2 = models.TextField(max_length = 50)
     city = models.CharField(max_length = 20)
     state = models.CharField(max_length = 20)
@@ -25,7 +25,7 @@ class Company(models.Model):
         self.save()
 
     def __str__(self):
-        return self.name
+        return self.namec
 #-----------------------------------------------------------------------------------------------------------------------
 class Holiday(models.Model):
     company = models.ForeignKey(Company)
@@ -36,7 +36,7 @@ class Holiday(models.Model):
         self.save()
 
     def __str__(self):
-        return self.company.name+" job Holiday on date  "+str(datetime.now())
+        return self.company.namec+" job Holiday on date  "+str(datetime.now())
 #-----------------------------------------------------------------------------------------------------------------------
 class WorkType(models.Model):
     company = models.ForeignKey(Company)
@@ -46,7 +46,7 @@ class WorkType(models.Model):
         self.save()
 
     def __str__(self):
-        return self.company.name+" work types"
+        return self.company.namec+" work types"
 #-----------------------------------------------------------------------------------------------------------------------
 class Designation(models.Model):
     company = models.ForeignKey(Company)
@@ -62,7 +62,7 @@ class Designation(models.Model):
         self.save()
 
     def __str__(self):
-        return self.company.name+" designations"
+        return self.designation
 #-----------------------------------------------------------------------------------------------------------------------
 class Department(models.Model):
     company = models.ForeignKey(Company)
@@ -71,7 +71,7 @@ class Department(models.Model):
     def publish(self):
         self.save()
     def __str__(self):
-        return self.company.name+" departments"
+        return self.company.namec+" departments"
 #-----------------------------------------------------------------------------------------------------------------------
 class JobType(models.Model):
     company = models.ForeignKey(Company)
@@ -81,5 +81,5 @@ class JobType(models.Model):
         self.save()
 
     def __str__(self):
-        return self.company.name+" job types"
+        return self.company.namec+" job types"
 #-----------------------------------------------------------------------------------------------------------------------

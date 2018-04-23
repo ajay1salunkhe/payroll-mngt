@@ -4,203 +4,213 @@
 {% block content %}
 
 <div>
-
+    <div class="alert alert-info">
+        <strong>Basic Info</strong>
+    </div>
     <div class="form_company">
-
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Company Name: </span>
-            </div>
-            <input type="text" class="form-control" placeholder="Enter Company name here" aria-label="" aria-describedby="basic-addon1">
-        </div>
-
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon2">Address: </span>
-            </div>
-            <input type="text" class="form-control" placeholder="Enter address here" aria-label="" aria-describedby="basic-addon2">
-        </div>
-        <br>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Country:</label>
-            </div>
-            <select class="custom-select" id="inputGroupSelect01">
-            </select>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect02">State:</label>
-                    </div>
-                    <select class="custom-select" id="inputGroupSelect02">
-                    </select>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Company Name: </span>
                 </div>
+                <!-- <input type="text" class="form-control" placeholder="Enter Company name here" aria-label="" aria-describedby="basic-addon1"> -->
+                {{ form.namec }}
             </div>
-            <div class="col">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect03">City:</label>
-                    </div>
-                    <select class="custom-select" id="inputGroupSelect03">
-                    </select>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">Address: </span>
                 </div>
+                <!-- <input type="text" class="form-control" placeholder="Enter address here" aria-label="" aria-describedby="basic-addon2"> -->
+                {{ form.address }}
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon3">Postal Code: </span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Enter Postal code here" aria-label="" aria-describedby="basic-addon3">
-                </div>
-            </div>
-            <div class="col">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon4">Fax: </span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Enter fax here" aria-label="" aria-describedby="basic-addon4">
-                </div>
-            </div>
-        </div>
-
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon5">Website: </span>
-            </div>
-            <input type="text" class="form-control" placeholder="Enter website here" aria-label="" aria-describedby="basic-addon5">
-        </div>
-
-        <div>
-            <p>
-                <a class="btn btn-link" data-toggle="collapse" href="#collapseHolidays" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    + Add Holidays
-                </a>
-            </p>
-            <div class="collapse" id="collapseHolidays">
-                <div class="card card-body">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelectHolidays">Select Holiday :</label>
-                                </div>
-                                <select class="custom-select" id="inputGroupSelectHolidays">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-primary">Add</button>
-                        </div>
-                    </div>
-                </div> <br>
-            </div>
-
-            <p>
-                <a class="btn btn-link" data-toggle="collapse" href="#collapseWorkTypes" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    + Add Work Types
-                </a>
-            </p>
-            <div class="collapse" id="collapseWorkTypes">
-                <div class="card card-body">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelectWorkTypes">Select Work Type:</label>
-                                </div>
-                                <select class="custom-select" id="inputGroupSelectWorkTypes">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-primary">Add</button>
-                        </div>
-                    </div>
-                </div> <br>
-            </div>
-            <p>
-                <a class="btn btn-link" data-toggle="collapse" href="#collapseDestinations" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    + Add Destinations
-                </a>
-            </p>
-            <div class="collapse" id="collapseDestinations">
-                <div class="card card-body">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelectDestinations">Select Destination:</label>
-                                </div>
-                                <select class="custom-select" id="inputGroupSelectDestinations">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-primary">Add</button>
-                        </div>
-                    </div>
-                </div> <br>
-            </div>
-            <p>
-                <a class="btn btn-link" data-toggle="collapse" href="#collapseDepartments" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    + Add Departments
-                </a>
-            </p>
-            <div class="collapse" id="collapseDepartments">
-                <div class="card card-body">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelectDepartments">Select Department:</label>
-                                </div>
-                                <select class="custom-select" id="inputGroupSelectDepartments">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-primary">Add</button>
-                        </div>
-                    </div>
-                </div> <br>
-            </div>
-            <p>
-                <a class="btn btn-link" data-toggle="collapse" href="#collapseJobTypes" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    + Add Job Types
-                </a>
-            </p>
-            <div class="collapse" id="collapseJobTypes">
-                <div class="card card-body">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelectJobTypes">Select Job Type:</label>
-                                </div>
-                                <select class="custom-select" id="inputGroupSelectJobTypes">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-primary">Add</button>
-                        </div>
-                    </div>
-                </div> <br>
-            </div>
-
-
             <br>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Country:</label>
+                </div>
+                <!-- <select class="custom-select" id="inputGroupSelect01">
+                     </select> -->
+                {{ form.country }}
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect02">State:</label>
+                        </div>
+                        <!-- <select class="custom-select" id="inputGroupSelect02">
+                             </select> -->
+                        {{ form.state }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect03">City:</label>
+                        </div>
+                        <!-- <select class="custom-select" id="inputGroupSelect03">
+                             </select> -->
+                        {{ form.city }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Postal Code: </span>
+                        </div>
+                        <!-- <input type="text" class="form-control" placeholder="Enter Postal code here" aria-label="" aria-describedby="basic-addon3"> -->
+                        {{ form.postal_code }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon4">Fax: </span>
+                        </div>
+                        <!-- <input type="text" class="form-control" placeholder="Enter fax here" aria-label="" aria-describedby="basic-addon4"> -->
+                        {{ form.fax }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon5">Website: </span>
+                </div>
+                <!-- <input type="text" class="form-control" placeholder="Enter website here" aria-label="" aria-describedby="basic-addon5"> -->
+                {{ form.website }}
+            </div>
 
 
+            <!-- <div>
+                 <p>
+                 <a class="btn btn-link" data-toggle="collapse" href="#collapseHolidays" role="button" aria-expanded="false" aria-controls="collapseExample">
+                 + Add Holidays
+                 </a>
+                 </p>
+                 <div class="collapse" id="collapseHolidays">
+                 <div class="card card-body">
+                 <div class="row">
+                 <div class="col-lg-8">
+                 <div class="input-group mb-3">
+                 <div class="input-group-prepend">
+                 <label class="input-group-text" for="inputGroupSelectHolidays">Select Holiday :</label>
+                 </div>
+                 <select class="custom-select" id="inputGroupSelectHolidays">
+                 </select>
+                 </div>
+                 </div>
+                 <div class="col">
+                 <button type="button" class="btn btn-primary">Add</button>
+                 </div>
+                 </div>
+                 </div> <br>
+                 </div>
 
-        </div>
+                 <p>
+                 <a class="btn btn-link" data-toggle="collapse" href="#collapseWorkTypes" role="button" aria-expanded="false" aria-controls="collapseExample">
+                 + Add Work Types
+                 </a>
+                 </p>
+                 <div class="collapse" id="collapseWorkTypes">
+                 <div class="card card-body">
+                 <div class="row">
+                 <div class="col-lg-8">
+                 <div class="input-group mb-3">
+                 <div class="input-group-prepend">
+                 <label class="input-group-text" for="inputGroupSelectWorkTypes">Select Work Type:</label>
+                 </div>
+                 <select class="custom-select" id="inputGroupSelectWorkTypes">
+                 </select>
+                 </div>
+                 </div>
+                 <div class="col">
+                 <button type="button" class="btn btn-primary">Add</button>
+                 </div>
+                 </div>
+                 </div> <br>
+                 </div>
+                 <p>
+                 <a class="btn btn-link" data-toggle="collapse" href="#collapseDestinations" role="button" aria-expanded="false" aria-controls="collapseExample">
+                 + Add Destinations
+                 </a>
+                 </p>
+                 <div class="collapse" id="collapseDestinations">
+                 <div class="card card-body">
+                 <div class="row">
+                 <div class="col-lg-8">
+                 <div class="input-group mb-3">
+                 <div class="input-group-prepend">
+                 <label class="input-group-text" for="inputGroupSelectDestinations">Select Destination:</label>
+                 </div>
+                 <select class="custom-select" id="inputGroupSelectDestinations">
+                 </select>
+                 </div>
+                 </div>
+                 <div class="col">
+                 <button type="button" class="btn btn-primary">Add</button>
+                 </div>
+                 </div>
+                 </div> <br>
+                 </div>
+                 <p>
+                 <a class="btn btn-link" data-toggle="collapse" href="#collapseDepartments" role="button" aria-expanded="false" aria-controls="collapseExample">
+                 + Add Departments
+                 </a>
+                 </p>
+                 <div class="collapse" id="collapseDepartments">
+                 <div class="card card-body">
+                 <div class="row">
+                 <div class="col-lg-8">
+                 <div class="input-group mb-3">
+                 <div class="input-group-prepend">
+                 <label class="input-group-text" for="inputGroupSelectDepartments">Select Department:</label>
+                 </div>
+                 <select class="custom-select" id="inputGroupSelectDepartments">
+                 </select>
+                 </div>
+                 </div>
+                 <div class="col">
+                 <button type="button" class="btn btn-primary">Add</button>
+                 </div>
+                 </div>
+                 </div> <br>
+                 </div>
+                 <p>
+                 <a class="btn btn-link" data-toggle="collapse" href="#collapseJobTypes" role="button" aria-expanded="false" aria-controls="collapseExample">
+                 + Add Job Types
+                 </a>
+                 </p>
+                 <div class="collapse" id="collapseJobTypes">
+                 <div class="card card-body">
+                 <div class="row">
+                 <div class="col-lg-8">
+                 <div class="input-group mb-3">
+                 <div class="input-group-prepend">
+                 <label class="input-group-text" for="inputGroupSelectJobTypes">Select Job Type:</label>
+                 </div>
+                 <select class="custom-select" id="inputGroupSelectJobTypes">
+                 </select>
+                 </div>
+                 </div>
+                 <div class="col">
+                 <button type="button" class="btn btn-primary">Add</button>
+                 </div>
+                 </div>
+                 </div> <br>
+                 </div> -->
 
 
-        {% endblock %}
+                <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        </form>
+            </div>
+
+
+            {% endblock %}
