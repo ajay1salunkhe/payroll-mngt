@@ -3,23 +3,88 @@
 
 {% block content %}
 
-<!-- <div class="table-responsive">
-     <table class="table table-striped table-sm">
-     <thead>
-     <tr>
-     <th>Name</th>
-     <th>Address</th>
-     </tr>
-     </thead>
-     {% for obj in object_list %}
-     <tbody>
-     <tr>
-     <td>{{obj.namec}}</td>
-     <td>{{obj.address}}</td>
-     </tr>
-     </tbody>
-     {% endfor %}
-     </table>
-     </div> -->
+<center>
+    <div style="width: 800px;">
+        {% for com in company %}
+        <div class="alert alert-info">
+            <div class="alert alert-warning">
+                General Info
+            </div>
+            <strong>Name : </strong> {{ com.namec }}
+            <br><strong>Address : </strong> {{ com.address }}
+            <br><strong>City : </strong> {{ com.city }}
+            <br><strong>State : </strong> {{ com.state }}
+            <br><strong>Country : </strong> {{ com.country }}
+            <br><strong>Postal Code : </strong> {{ com.postal_code }}
+            <br><strong>Fax : </strong> {{ com.fax }}
+            <br><strong>Website : </strong> {{ com.website }}
+        </div>
+        {% endfor %}
+
+
+        <div class="alert alert-info">
+            <div class="alert alert-warning">
+                Work Types
+            </div>
+            <table class="table table-striped table-sm">
+                {% for wt in worktype %}
+                <tbody>
+                    <tr>
+                        <td><center>{{wt.work_type}}</center></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="alert alert-info">
+            <div class="alert alert-warning">
+                Designations
+            </div>
+            <table class="table table-striped table-sm">
+                {% for desig in designation %}
+                <tbody>
+                    <tr>
+                        <td><center>{{desig.designation}}</center></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+
+
+        <div class="alert alert-info">
+            <div class="alert alert-warning">
+                Departments
+            </div>
+            <table class="table table-striped table-sm">
+                {% for dept in department %}
+                <tbody>
+                    <tr>
+                        <td><center>{{dept.department}}</center></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+
+
+        <div class="alert alert-info">
+            <div class="alert alert-warning">
+                Job Types
+            </div>
+            <table class="table table-striped table-sm">
+                {% for jt in jobtype %}
+                <tbody>
+                    <tr>
+                        <td><center>{{jt.job_type}}</center></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</center>
 
 {% endblock %}

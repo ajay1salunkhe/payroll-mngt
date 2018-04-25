@@ -113,9 +113,31 @@
             {{ form2.probation_period }}
         </div>
 
-        <div>
-            {{ form3.as_p }}
+        <div class="alert alert-primary" role="alert">
+            Company Related Info
         </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Designation :</label>
+            </div>
+            {{ form3.designation }}
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Department :</label>
+            </div>
+            {{ form4.department }}
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Job Type :</label>
+            </div>
+            {{ form5.job_type }}
+        </div>
+
         <!-- <div class="input-group mb-3">
              <div class="input-group-prepend">
              <span class="input-group-text" id="basic-addo">Company : </span>

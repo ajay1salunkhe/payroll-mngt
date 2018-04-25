@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from datetime import datetime
-from company.models import Company, Designation, Department,JobType
+from company.models import Company, Designation, Department, JobType
 #from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -67,7 +67,7 @@ class DesignationHistory(models.Model):
 #-----------------------------------------------------------------------------------------------------------------------
 class DepartmentHistory(models.Model):
     employee = models.ForeignKey(Employee)
-    department_id = models.ForeignKey(Company)
+    department = models.ForeignKey(Department,null=True)
     date = models.DateField()
     
     def publish(self):
@@ -78,7 +78,7 @@ class DepartmentHistory(models.Model):
 #-----------------------------------------------------------------------------------------------------------------------
 class JobTypeHistory(models.Model):
     employee = models.ForeignKey(Employee)
-    job_type_id = models.ForeignKey(Company)
+    job_type = models.ForeignKey(JobType, null=True)
     date = models.DateField()
 
     def publish(self):
@@ -89,7 +89,7 @@ class JobTypeHistory(models.Model):
 #-----------------------------------------------------------------------------------------------------------------------
 class LeaveHistory(models.Model):
     employee = models.ForeignKey(Employee)
-    attendance_id = models.ForeignKey("attendance.Attendance")
+    attendance = models.ForeignKey("attendance.Attendance")
     date = models.DateField()
     privilege_leave = models.PositiveSmallIntegerField()
     casual_leave = models.PositiveSmallIntegerField()

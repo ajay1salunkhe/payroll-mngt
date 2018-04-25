@@ -10,9 +10,18 @@ from django.contrib import messages
 
 @login_required
 def company_display(request):
-    # queryset = get_object_or_404(Company, pk=pk)
-    # context = { "object_list": queryset,}
-    return render(request, 'company/company.html') #,context)
+    company = Company.objects.filter(pk=request.user.employee.company_id.id)
+    worktype = WorkType.objects.filter(company_id=request.user.employee.company_id.id)
+    designation = Designation.objects.filter(company_id=request.user.employee.company_id.id)
+    department = Department.objects.filter(company_id=request.user.employee.company_id.id)
+    jobtype = JobType.objects.filter(company_id=request.user.employee.company_id.id)
+    return render(request, 'company/company.html',{
+        'company': company,
+        'worktype': worktype,
+        'designation': designation,
+        'department': department,
+        'jobtype': jobtype
+    })
 
 @login_required
 def company_edit(request):

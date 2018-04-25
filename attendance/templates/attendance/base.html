@@ -14,6 +14,34 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <!-- Custom styles for this template -->
+        <script
+            src="http://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script>
+         $(document).ready(function() {
+             $('#id_wt').hide();
+             $('#id_lt').hide();
+             $('#id_rem_leave').hide();
+             $('#id_mark').on('change',function() {
+                 if ($('select[name="mark"]').val() == "0"){
+                     $('#id_wt').hide();
+                     $('#id_lt').show();
+                 }
+                 if ($('select[name="mark"]').val() == "1"){
+                     $('#id_lt').hide();
+                     $('#id_wt').show();
+                 }
+                 if ($('select[name="mark"]').val() == ""){
+                     $('#id_lt').hide();
+                     $('#id_wt').hide();
+                 }
+             });
+         });
+        </script>
+        <!-- <link href="{% static 'jquery/demo.js' %}" rel="stylesheet"> -->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     </head>
 
@@ -119,7 +147,7 @@
                 </nav>
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Attendance Details</h1>
+                        <h1 class="h2">Attendance</h1>
                         <button type="button" onclick="window.location.href='{% url 'attendance:attendance_history' %}'" class="btn btn-primary">Show Attendance History</button>
                     </div>
                     {%block content%}
@@ -128,19 +156,6 @@
             </div>
         </div>
 
-        <!-- Bootstrap core JavaScript
-             ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <!-- my commentnce/base.html'%}
-             {% load staticfiles %}
-
-             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-             <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-             <script src="../../../../assets/js/vendor/popper.min.js"></script>
-             <script src="../../../../dist/js/bootstrap.min.js"></script>
-        -->
-
-        <!-- Bootstrap -->
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -149,38 +164,6 @@
         <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
         <script>
          feather.replace()
-        </script>
-
-        <!-- Graphs -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-        <script>
-         var ctx = document.getElementById("myChart");
-         var myChart = new Chart(ctx, {
-             type: 'line',
-             data: {
-                 labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                 datasets: [{
-                     data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-                     lineTension: 0,
-                     backgroundColor: 'transparent',
-                     borderColor: '#007bff',
-                     borderWidth: 4,
-                     pointBackgroundColor: '#007bff'
-                 }]
-             },
-             options: {
-                 scales: {
-                     yAxes: [{
-                         ticks: {
-                             beginAtZero: false
-                         }
-                     }]
-                 },
-                 legend: {
-                     display: false,
-                 }
-             }
-         });
         </script>
     </body>
 </html>

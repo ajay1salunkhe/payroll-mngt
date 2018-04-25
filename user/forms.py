@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from .models import Employee, DesignationHistory, DepartmentHistory, JobTypeHistory, LeaveHistory
-from company.models import Designation
+from company.models import Designation, Department, JobType
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.admin.widgets import AdminDateWidget
@@ -150,13 +150,6 @@ class employee_add_form(forms.ModelForm):
         }
         
         
-    def clean(self):
-        cleaned_data=self.cleaned_data
-        name=cleaned_data.get('name')
-        email=cleaned_data.get('email')
-
-        if Employee.objects.filter(name=name).exists():
-            print("name already exists")
 
 class employee_designation_form(forms.ModelForm):
     class Meta:
@@ -166,7 +159,57 @@ class employee_designation_form(forms.ModelForm):
             'designation',
 #            'date',
         )
+        widgets = {
+            'designation': forms.Select(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),            
+        }
+        
 
     def __init__(self,temp,*args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['designation'].queryset = Designation.objects.filter(company_id=temp)
+
+        # print("try latest id og des history : ", type(Designation.objects.filter(company_id=temp).latest('id').id) )
+        # tid = DesignationHistory.objects.latest('id').designation_id
+        # print("tid : ",tid)
+#        self.initial['designation'] = Designation.objects.filter(company_id=temp).latest('id')
+        
+
+class employee_department_form(forms.ModelForm):
+    class Meta:
+        model = DepartmentHistory
+        fields = (
+            'department',
+        )
+        widgets = {
+            'department': forms.Select(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),            
+        }        
+
+    def __init__(self,temp,*args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['department'].queryset = Department.objects.filter(company_id=temp)      
+
+class employee_job_type_form(forms.ModelForm):
+    class Meta:
+        model = JobTypeHistory
+        fields = (
+            'job_type',
+        )
+        widgets = {
+            'job_type': forms.Select(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),            
+        }        
+
+    def __init__(self,temp,*args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['job_type'].queryset = JobType.objects.filter(company_id=temp)      

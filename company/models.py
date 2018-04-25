@@ -46,7 +46,7 @@ class WorkType(models.Model):
         self.save()
 
     def __str__(self):
-        return self.company.namec+" work types"
+        return self.work_type
 #-----------------------------------------------------------------------------------------------------------------------
 class Designation(models.Model):
     company = models.ForeignKey(Company)
@@ -71,7 +71,7 @@ class Department(models.Model):
     def publish(self):
         self.save()
     def __str__(self):
-        return self.company.namec+" departments"
+        return self.department
 #-----------------------------------------------------------------------------------------------------------------------
 class JobType(models.Model):
     company = models.ForeignKey(Company)
@@ -81,5 +81,5 @@ class JobType(models.Model):
         self.save()
 
     def __str__(self):
-        return self.company.namec+" job types"
+        return self.job_type
 #-----------------------------------------------------------------------------------------------------------------------
