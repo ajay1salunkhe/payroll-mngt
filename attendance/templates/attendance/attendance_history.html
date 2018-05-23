@@ -2,5 +2,61 @@
 {% load staticfiles %}
 
 {% block content %}
+    <div class="form_attendance">
+        <br>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Select Employee : </span>
+                </div>
+                {{ form.employee }}
+            </div>
 
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">From : </span>
+                </div>
+                <input name="fromdate" type="date" class="form-control" />
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">To : </span>
+                </div>
+                <input name="todate" type="date" class="form-control" />
+            </div>
+
+            <center>
+                <button class="btn btn-lg btn-primary" type="submit">Show</button>
+            </center>
+        </form>
+        <br>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            Showing Attendance History for <strong>{{employee}}</strong>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Mark</th>
+                    <th>Remaining PL</th>
+                    <th>Remaining CL</th>
+                    <th>Leave Type</th>
+                </tr>
+            </thead>
+            {% for obj in history %}
+            <tbody>
+                <tr>
+                    <td>{{obj.date}}</td>
+                    <td>{{obj.mark}}</td>
+                    <td>{{obj.rem_privilege_leave}}</td>
+                    <td>{{obj.rem_casual_leave}}</td>
+                    <td>{{obj.leave_type}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

@@ -27,6 +27,9 @@
                       <a class="nav-link">Welcome <b style="color: orange;">{{ request.user.username }}</b></a>
                   </div>
                   <div class="col">
+                      <a class="nav-link">Login Time : <b style="color: white;">{{ request.user.last_login }}</b></a>
+                  </div>
+                  <div class="col">
                       <a class="nav-link" href="{% url 'logout' %}">Log out</a>
                    </div>
               </div>

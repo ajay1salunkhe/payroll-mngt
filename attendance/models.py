@@ -27,6 +27,7 @@ class Attendance(models.Model):
     #                               default='---'
     #                              )
     leave_type = models.CharField(choices=leave_type_choices,max_length = 20,null=True,blank=True)
+    lop = models.BooleanField(default=False);
     
     def publish(self):
         self.save()

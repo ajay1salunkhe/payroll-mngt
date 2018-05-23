@@ -7,7 +7,8 @@ from user.models import Employee
 from company.models import Company
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 
 # Create your views here.
 
@@ -67,6 +68,11 @@ def signup_view(request):
             objEmployee.company_id = objCompany
             objEmployee.user = objUser
             objEmployee.save()
+            '''
+            email = EmailMessage('Subject', 'Body', to=[''])
+            email.send()
+            #res = send_mail('subject','message','mail2ajaysalunkhe123@gmail.com',['mail2ajaysalunkhe123@gmail.com'], fail_silently=False,)
+            #print("res : ",res) '''
             print("all valid")
     else:
         formCompany = SignupCompanyForm()

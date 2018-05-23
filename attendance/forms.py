@@ -55,3 +55,23 @@ class AttendanceForm(forms.ModelForm):
         if company_id:
             self.fields['employee'].queryset = Employee.objects.filter(company_id=company_id)
             self.fields['work_type'].queryset = WorkType.objects.filter(company_id=company_id)
+
+class AttendanceHistoryForm(forms.ModelForm):
+    class Meta:
+        model = Attendance
+        fields = (
+            'employee',
+        )
+        widgets = {
+            'employee': forms.Select(
+                attrs={
+                    'class':'form-control'
+                }
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        company_id = kwargs.pop('company_id', False)
+        super().__init__(*args, **kwargs)
+        if company_id:
+            self.fields['employee'].queryset = Employee.objects.filter(company_id=company_id)

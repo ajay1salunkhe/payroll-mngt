@@ -1,0 +1,150 @@
+{% extends 'payroll/base.html' %}
+{%include 'login/messages.html' %}
+
+{% block content %}
+
+<div class="col-sm-7" style="margin-right: auto; margin-left: auto;">
+    <form method="POST" class="employee-form">{% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Name : </span>
+                    </div>
+                    <span style="margin: 12px; font-size:20px;">
+                        <strong>{{ empname }}</strong>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Date : </span>
+                    </div>
+                    {{ form.date }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Basic Salary (%) : </span>
+                    </div>
+                    {{ form.basic_salary_per }}
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">HRA (%) : </span>
+                    </div>
+                    {{ form.basic_salary_per }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Basic Salary Amount  : </span>
+                    </div>
+                    {{ form.basic_amount }}
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">HRA Amount : </span>
+                    </div>
+                    {{ form.hra_amount }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Conveyance Allowance : </span>
+                    </div>
+                    {{ form.conveyance_allow }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Special Allowance : </span>
+                    </div>
+                    {{ form.special_allow }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Proffessional Tax (%) : </span>
+                    </div>
+                    {{ form.prof_tax }}
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Income Tax (%) : </span>
+                    </div>
+                    {{ form.income_tax }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Intended Gross Earning : </span>
+                    </div>
+                    {{ form.gross_earning }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Intended Gross Deduction : </span>
+                    </div>
+                    {{ form.gross_deduction }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Intended Net Salary : </span>
+                    </div>
+                    {{ form.net_salary }}
+                </div>
+            </div>
+        </div>
+
+        <center>
+            <button type="submit" class="btn btn-primary btn-md">Generate Salary Slip</button>
+        </center>
+    </form>
+</div>
+
+
+
+{% endblock %}

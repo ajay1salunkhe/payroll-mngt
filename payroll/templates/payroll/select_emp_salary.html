@@ -1,0 +1,23 @@
+{% extends 'payroll/base.html'%}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="text-center">
+    <div class="signin">
+        <form method="POST" class="employee_form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Select Employee : </span>
+                </div>
+                {{ form.employee }}
+            </div>
+
+            <center><button class="btn btn-lg btn-primary" type="submit">Proceed >></button></center>
+            <!-- <center><button class="btn btn-lg btn-primary" type="submit" onClick="window.location.href='{% url 'salary_emp' pk=1 %}'">Proceed >></button></center> -->
+        </form>
+    </div>
+</div>
+
+{% endblock %}

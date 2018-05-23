@@ -12,6 +12,14 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.db import transaction
 import datetime
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
+
 
 @login_required
 def employee_display(request):
@@ -38,6 +46,7 @@ def employee_add(request):
             formEmployeeJobType = employee_job_type_form(temp,request.POST)
             if formUser.is_valid() and formEmployee.is_valid() and formEmployeeDesignation.is_valid() and formEmployeeDepartment.is_valid() and formEmployeeJobType.is_valid() :
                 objUser = formUser.save(commit=False)
+                plainpass = objUser.password
                 objUser.set_password(objUser.password)
                 objEmployee = formEmployee.save(commit=False)
                 objUser.save()
@@ -56,7 +65,13 @@ def employee_add(request):
                 objEmployeeJobType = formEmployeeJobType.save(commit=False)
                 objEmployeeJobType.employee = emp
                 objEmployeeJobType.date = datetime.datetime.now().date()
-                objEmployeeJobType.save()                
+                objEmployeeJobType.save()         
+                current_site = get_current_site(request)
+                mail_subject = 'subject----'
+                to_email = objUser.email
+                message = 'Your username is : '+objUser.username+' and password is : '+plainpass
+                email = EmailMessage(mail_subject, message, to=[to_email])
+                email.send()       
                 return redirect('employee_display')
         else:
             formUser = user_add_form()
@@ -157,6 +172,7 @@ def employee_update(request, pk):
             formEmployeeDepartment = employee_department_form(temp,initial=dictDept)
             formEmployeeJobType = employee_job_type_form(temp,initial=dictJobtype)
             
-    return render(request, "employee_add.html",{'form1':formUser,'form2':formEmployee, 'form3':formEmployeeDesignation, 'form4':formEmployeeDepartment,  'form5':formEmployeeJobType})
+    return render(request, "employee_add.html",{'form1':formUser, 'form2':formEmployee, 'form3':formEmployeeDesignation, 'form4':formEmployeeDepartment,  'form5':formEmployeeJobType})
+
 
 

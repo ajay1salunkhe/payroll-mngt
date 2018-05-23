@@ -150,6 +150,7 @@
                         <h1 class="h2">Attendance</h1>
                         <button type="button" onclick="window.location.href='{% url 'attendance:attendance_history' %}'" class="btn btn-primary">Show Attendance History</button>
                     </div>
+		    {% include 'attendance/messages.html' %}
                     {%block content%}
                     {%endblock%}
                 </main>

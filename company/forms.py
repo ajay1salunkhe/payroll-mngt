@@ -96,7 +96,7 @@ class worktype_add_form(forms.ModelForm):
             'work_type',
         )
         widgets = {
-            'work_type': forms.TextInput(
+            'work_type': forms.Select(
                 attrs={
                     'class':'form-control',
                     'placeholder':'Enter Work Type here'

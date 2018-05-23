@@ -40,7 +40,10 @@ class Holiday(models.Model):
 #-----------------------------------------------------------------------------------------------------------------------
 class WorkType(models.Model):
     company = models.ForeignKey(Company)
-    work_type = models.CharField(max_length = 20)
+    wt_choices = (('SunHol','Sunday Holiday'),
+                      ('SatSunHol','Sat-Sun Holiday')
+                     )
+    work_type = models.CharField(max_length = 20, choices = wt_choices)
     
     def publish(self):
         self.save()

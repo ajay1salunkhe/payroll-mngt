@@ -152,6 +152,26 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 LOGIN_URL = '/login/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'media_cdn')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'media_cdn')
 
 #AUTH_USER_MODEL = 'core.User'
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mail2ajaysalunkhe123@gmail.com'
+EMAIL_HOST_PASSWORD = 'as@google123'
+EMAIL_PORT = 587
+#DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}

@@ -1,0 +1,143 @@
+        <hr>
+        <center>
+        <div class="row">
+            <div class="col">
+                    <span style="font-size:30px;text-align:center;">
+                        <strong>{{ company }}</strong>
+                    </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                    <span style="font-size:15px;text-align:center;">
+                        <strong><u>Address :</u> {{ company_address }}</strong>
+                    </span>
+            </div>
+        </div>
+        </center>
+        <hr>
+        <div class="row">
+            <div class="col">
+                    <span style="text-align:center;">
+                        Employee Name : <strong> {{ empname }} </strong>
+                    </span>
+            </div>
+        </div>
+        <table style="table-layout: fixed; width:100%;">
+            <tr>
+                <td>
+                    <span style="text-align:center;">
+                        Designation : <strong> {{ empdesig }} </strong>
+                    </span>
+                </td>
+                <td>
+                    <span style="text-align:center;">
+                        Department : <strong> {{ empdepart }} </strong>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <table style="table-layout: fixed; width:100%;">
+            <tr>
+                <td>
+                    <span style="text-align:center;">
+                        Month & Year : <strong> {{ month_year }} </strong>
+                    </span>
+                </td>
+                <td>
+                    <span style="text-align:center;">
+                        Salary Date : <strong> {{ salary_date }} </strong>
+                    </span>
+                </td>
+            </tr>
+        </table>
+
+        <hr>
+        <table style="table-layout: fixed; width:100%;">
+            <tr>
+                <td>
+                    <span style="text-align:center;">
+                        Working Days : <strong> {{ working_days }} </strong>
+                    </span>
+                </td>
+                <td>
+                    <span style="text-align:center;">
+                        Weekends & Holidays : <strong> {{ weekends }} </strong> + <strong> {{ holidays }} </strong>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="text-align:center;">
+                        Paid Days :<strong> {{ paid_days }} </strong>
+                    </span>
+                </td>
+                <td>
+                    <span style="text-align:center;">
+                        Loss of pay Days : <strong>{{ lop_days }}</strong>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="text-align:center;">
+                        No of Leaves : <strong>{{ leaves }}</strong>
+                    </span>
+                </td>
+                <td>
+                    <span style="text-align:center;">
+                        Rem. Leaves(PL+CL) : <strong>{{ p_leave }}</strong> + <strong>{{ c_leave }}</strong>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <div>
+            <table border="1" style="table-layout: fixed; width:100%;">
+                <tr style="background-color: #e8e9ea;">
+                    <th colspan="2"><center>Allowances</center></th>
+                    <th colspan="2"><center>Deductions</center></th>
+                </tr>
+                <tr>
+                    <td>Basic </td>
+                    <td style="text-align:right;padding-right:7px;">{{ basic }}</td>
+                    <td>Professional tax</td>
+                    <td style="text-align:right;padding-right:7px;">{{ proff_tax }}</td>
+                </tr>
+                <tr>
+                    <td>HRA </td>
+                    <td style="text-align:right;padding-right:7px;">{{ hra }}</td>
+                    <td>Income tax</td>
+                    <td style="text-align:right;padding-right:7px;">{{ income_tax }}</td>
+                </tr>
+                <tr>
+                    <td>Conveyance allowance </td>
+                    <td style="text-align:right;padding-right:7px;">{{ convey_allow }}</td>
+                    <td>Loss of pay</td>
+                    <td style="text-align:right;padding-right:7px;">{{ lop }}</td>
+                </tr>
+                <tr>
+                    <td>Special allowance </td>
+                    <td style="text-align:right;padding-right:7px;">{{ special_allow }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Gross earning </strong></td>
+                    <td style="text-align:right;padding-right:7px;"><strong>{{ gross_earning }}</strong></td>
+                    <td><strong>Gross deduction</strong></td>
+                    <td style="text-align:right;padding-right:7px;"><strong>{{ gross_deduction }}</strong></td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                    <span style="font-size:20px;text-align:center;">
+                        Net Salary : <strong>{{ net_salary }}</strong> <span style="font-size:17px;">({{ net_salary_in_words }})</span>
+                    </span>
+            </div>
+        </div>
+        <hr>
+        <center> Note: This is a computer generated pay slip hence does not require signature. </center>
+        <hr>
