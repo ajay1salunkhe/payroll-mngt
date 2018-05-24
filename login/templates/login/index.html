@@ -159,15 +159,16 @@
     <!-- Graphs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
+      var ctx1 = document.getElementById("myChart");
+      var myChart = new Chart(ctx1, {
+        type: 'bar',
         data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          labels: ["Jan", "Feb", "March", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
           datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+            data: [{{ a1 }},{{ a2 }},{{ a3 }},{{ a4 }},{{ a5 }},{{ a6 }},{{ a7 }},{{ a8 }},{{ a9 }},{{ a10 }},{{ a11 }},{{ a12 }}],
             lineTension: 0,
-            backgroundColor: 'transparent',
+            backgroundColor: "#e8c3b9" ,
+              /* backgroundColor: 'transparent',*/
             borderColor: '#007bff',
             borderWidth: 4,
             pointBackgroundColor: '#007bff'
@@ -178,6 +179,63 @@
             yAxes: [{
               ticks: {
                 beginAtZero: false
+              }
+            }]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+
+     var ctx2 = document.getElementById("myPie");
+     new Chart(ctx2, {
+         type: 'pie',
+         data: {
+             /* labels: ["Africa", "Asia", "Europe", "Latin America"],*/
+             labels: [
+                 {% for obj in l2 %}
+                 "{{ obj }}",
+                 {% endfor %}
+             ],
+             datasets: [{
+                 label: "Employees (Number)",
+                 backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                 data: [
+                     {% for obj in l3 %}
+                     {{ obj }},
+                     {% endfor %}
+                 ]
+             }]
+         },
+         options: {
+             title: {
+                 display: true,
+                 text: 'No of employees by designation'
+             }
+         }
+     });
+
+      var ctx3 = document.getElementById("myChart2");
+      var myChart = new Chart(ctx3, {
+        type: 'horizontalBar',
+        data: {
+          labels: ["","Male", "Female",""],
+          datasets: [{
+            data: [0, {{ males }} , {{ females }}, 0],
+            lineTension: 0,
+              /* backgroundColor: [,"#c45850", "#3e95cd"],*/
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 7,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
               }
             }]
           },

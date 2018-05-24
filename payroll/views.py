@@ -200,7 +200,7 @@ def salary_emp_details(request,pk,month,year):
                                        }
         )
         
-        pdf_name = "s_"+request.user.username+"_"+str(datetime.datetime.now().date())
+        pdf_name = "s_"+empname.replace(" ","_")+"_"+str(datetime.datetime.now().date())
         html = HTML(string=html_string)
         html.write_pdf(target='/tmp/mypdf.pdf');
         fs = FileSystemStorage('/tmp')
