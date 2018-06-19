@@ -2,42 +2,78 @@
 {% load staticfiles %}
 
 <div>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-        <h1 class="h2">Employee Details</h1>
-        <button type="button" onclick="window.location.href='{% url 'employee_add' %}'" class="btn btn-primary">Add Employee</button>
-    </div>
+    <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+         <h1 class="h2">Employee Details</h1>
+         <button type="button" onclick="window.location.href='{% url 'employee_add' %}'" class="btn btn-primary">Add Employee</button>
+         </div> -->
     {% block content %}
-
-    <div class="table-responsive">
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>Profile Pic</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Date of Birth</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            {% for obj in object_list %}
-            <tbody>
-                <tr>
-                    <td><img src="{{obj.profile_pic.url}}" height=50 width=50></img></td>
-                    <td>{{obj.name}}</td>
-                    <td>{{obj.address}}</td>
-                    <td>{{obj.dob}}</td>
-                    <td>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <button type="button" onclick="window.location.href='{% url 'user:employee_update' pk=obj.user_id %}'" class="btn btn-primary">Edit</button>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            {% endfor %}
-        </table>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <span></span>
+        <span>
+            Export to :
+        <button type="button" onclick="window.location.href='{% url 'user:export_to_csv_employee' %}'" class="btn btn-link">
+            CSV
+        </button>
+        <button type="button" onclick="window.location.href='{% url 'user:export_to_excel_employee' %}'" class="btn btn-link">
+            Excel
+        </button>
+        </span>
     </div>
+    <div>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" id="tbl">
+                <thead>
+                    <tr>
+                        <th>Profile Pic</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Date of Birth</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                {% for obj in object_list %}
+                <tbody id="myTable">
+                    <tr>
+                        <td><img src="{{obj.profile_pic.url}}" height=50 width=50></img></td>
+                        <td>{{obj.name}}</td>
+                        <td>{{obj.address}}</td>
+                        <td>{{obj.dob}}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <button type="button" onclick="window.location.href='{% url 'user:employee_update' pk=obj.user_id %}'" class="btn btn-primary">Edit</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
+            {% if object_list.has_other_pages %}
+            <ul class="pagination">
+                {% if object_list.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ object_list.previous_page_number }}">Prev</a></li>
+                {% else %}
+                <li class="page-item" class="disabled"><span><a class="page-link" href="#">Prev</a></span></li>
+                {% endif %}
+                {% for i in object_list.paginator.page_range %}
+                {% if object_list.number == i %}
+                <li class="page-item active"><span><a class="page-link" href="?page={{ i }}">{{ i }}</a> <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if object_list.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ object_list.next_page_number }}">Next</a></li>
+                {% else %}
+                <li class="page-item" class="disabled"><span><a class="page-link" href="#">Next</a></span></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+
 
     {% endblock %}
 </div>

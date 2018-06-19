@@ -84,3 +84,8 @@ class salary_history_form(forms.ModelForm):
     class Meta:
         model = SalaryHistory
         fields = ()
+
+
+class salary_history_date_range(forms.Form):
+        fromdate = forms.DateField(widget=forms.DateInput(attrs={'type':'date','class': 'form-control', 'required': True}))
+        todate = forms.DateField(widget=forms.DateInput(attrs={'type':'date','class': 'form-control', 'required': True}))

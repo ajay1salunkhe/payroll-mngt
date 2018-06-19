@@ -51,10 +51,14 @@ class AttendanceForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         company_id = kwargs.pop('company_id', False)
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)        
+#        super(AttendanceForm, self).__init__(*args, **kwargs)
+
         if company_id:
+            #self.fields['employee'] = forms.ModelChoiceField(queryset=Employee.objects.filter(company_id=company_id))
             self.fields['employee'].queryset = Employee.objects.filter(company_id=company_id)
             self.fields['work_type'].queryset = WorkType.objects.filter(company_id=company_id)
+
 
 class AttendanceHistoryForm(forms.ModelForm):
     class Meta:
@@ -75,3 +79,8 @@ class AttendanceHistoryForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if company_id:
             self.fields['employee'].queryset = Employee.objects.filter(company_id=company_id)
+
+
+class AttendanceHistoryByDateForm(forms.Form):
+    date = forms.DateField(widget=forms.DateInput(attrs={'type':'date','class': 'form-control', 'required': True}))
+    

@@ -1,0 +1,30 @@
+{% extends 'attendance/base.html'%}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            Attendance History for date : <strong>{{date}}</strong>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Mark</th>
+                    <th>Leave Type</th>
+                    <th>Work Type</th>
+                </tr>
+            </thead>
+
+            {% for obj in final %}
+            <tbody>
+                <tr>
+                    <td>{{obj.name}}</td>
+                    <td>{{obj.mark}}</td>
+                    <td>{{obj.lt}}</td>
+                    <td>{{obj.wt}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

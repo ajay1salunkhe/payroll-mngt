@@ -48,7 +48,10 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3">Gross Salary (for month) : </span>
                     </div>
-                    {{ form.gross_month_salary }}
+                    <span hidden> {{ form.gross_month_salary }} </span>
+                    <span style="margin:7px;">
+                        <strong> {{gross_month}}<sup style="color:red;">*<sup> </strong>
+                    </span>
                 </div>
             </div>
         </div>
@@ -108,6 +111,9 @@
         <center>
             <button type="submit" class="btn btn-primary btn-md">Generate Salary Slip</button>
         </center>
+        <div style="color:red;">
+            * - figure are according to appreaisal effective_from date
+        </div>
     </form>
 </div>
 

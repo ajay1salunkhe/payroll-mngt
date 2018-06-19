@@ -15,6 +15,17 @@
 
         <!-- Custom styles for this template -->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+         $(document).ready(function(){
+             $("#myInput").on("keyup", function() {
+                 var value = $(this).val().toLowerCase();
+                 $("#myTable tr").filter(function() {
+                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                 });
+             });
+         });
+        </script>
     </head>
 
     <body>
@@ -120,11 +131,15 @@
 
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Employee Details</h1>
-                        <button type="button" onclick="window.location.href='{% url 'user:employee_add' %}'" class="btn btn-primary">Add Employee</button>
+                        <h1 class="h2"><span data-feather="users" style="padding-right:5px;"></span>Employee Details</h1>
+                        <span>
+                            <input id="myInput" type="text" placeholder="Search...">
+                            <button type="button" onclick="window.location.href='{% url 'user:employee_add' %}'" class="btn btn-primary"><span data-feather="plus-circle" style="margin-right:5px;"></span>Add Employee</button>
+                        </span>
                     </div>
 
                     <div>
+                        {% include 'messages.html' %}
                         {%block content%}
 
                         {%endblock%}

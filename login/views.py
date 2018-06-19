@@ -14,10 +14,15 @@ from company.models import Designation
 import datetime
 import calendar
 from django.db.models import Sum
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+import requests
+#from twilio.rest import Client
 
 def home_view(request):
-    return render(request,'login/home.html')
+    response = requests.get('http://freegeoip.net/json/')
+    geodata = response.json()
+    print("geodata : ",geodata)
+    return render(request,'login/home.html',{"geodata":geodata})
 
 def login_view(request):
 
@@ -40,7 +45,28 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
+@login_required
 def dashboard(request):
+
+#     # Your Account SID from twilio.com/console
+#     account_sid = "ACfb7bd082ccb0bf55ea4600378cd5627a"
+# #    account_sid = "AC7deb92b8d42c65b7696500c2f56fc853"
+#     # Your Auth Token from twilio.com/console
+#     auth_token  = "bbfc772c97db1eb69357e7b4abbe8029"
+# #    auth_token  = "a393840a1ea841ec61702225e344dc0a"
+
+#     client = Client(account_sid, auth_token)
+
+#     message = client.messages.create(
+#             to="+919637636281",
+#             # from_="+15017250604",
+# #            to="+917261934449",
+#             from_="+15005550006",
+# #            from_="+919637636281",
+#             body="Hello from Python!")
+
+#     print(message.sid)
+    
     #try for chart :)
     now = datetime.datetime.now().date()
     l=[]
@@ -79,12 +105,15 @@ def dashboard(request):
                 temp+=1
         l3.append(temp)
                 
-    print("l3 : ",l3)
+
 
     #todays birthday try :)
-    birthday_emp = Employee.objects.filter(company_id=request.user.employee.company_id,dob=now)
+    birthday_emp = Employee.objects.filter(company_id=request.user.employee.company_id,dob__month=now.month,dob__day=now.day)
+    # for emp in birthday_emp:
+    #     user_id = emp.user_id
+    #     mail_address = get_object_or_404(User, id=user_id).email 
+    #     print("emp : ",emp,"   user_id : ",user_id,"  email : ",mail_address)
 
-    print("birthday_emp : ",birthday_emp)
 
     #male female ratio
     males = Employee.objects.filter(company_id=request.user.employee.company_id,gender="M").count()

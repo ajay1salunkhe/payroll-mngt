@@ -6,7 +6,7 @@ from company.models import Company, Designation, Department, JobType
 #from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-
+import decimal
 
 #-----------------------------------------------------------------------------------------------------------------------
 class Employee(models.Model):
@@ -43,6 +43,22 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.name
+#-----------------------------------------------------------------------------------------------------------------------
+class EmployeeSalary(models.Model):
+    employee = models.ForeignKey(Employee)
+    salary = models.DecimalField(decimal_places = 2,
+                                 max_digits = 10,
+                                 default = decimal.Decimal('0.0000000000')
+                                )
+    updation_date = models.DateField()
+    effective_from = models.DateField()
+
+    def publish(self):
+        self.save()
+
+    def __str__(self):
+        return self.employee.name+" 's Salary details on date :  "+str(self.updation_date)
+    
 #-----------------------------------------------------------------------------------------------------------------------
 #code from simpleisbetterthancomplex.com
 # @receiver(post_save, sender=User)

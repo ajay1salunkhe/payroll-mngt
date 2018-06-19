@@ -2,7 +2,103 @@
 {% load staticfiles %}
 
 {% block content %}
+<div>
     <div>
-     Salary Historyyy Here
+        Showing Salary History for <strong>{{empname}}</strong> , from {{fromdate}} to {{todate}}
+        <span style="float: right;">
+
+        </span>
     </div>
+    {% for obj in histories %}
+    <div class="alert alert-info" role="alert">
+        <div class="row">
+            <div class="col">
+                    <span style="text-align:center;">
+                        Month & Year : <strong>{{obj.month_year}}</strong>
+                    </span>
+            </div>
+            <div class="col">
+                    <span style="text-align:center;">
+                        Salary Date : <strong> {{obj.date}} </strong>
+                    </span>
+            </div>
+            <div class="col">
+                <span style="float:right;">
+                    <button onclick="window.location.href='{% url 'print_it' pk=obj.employee_id month_year=obj.month_year %}'" class="btn btn-outline-success btn-md">Print it !</button>
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <span style="text-align:center;">
+                    Working Days : <strong> {{obj.working_days}} </strong>
+                </span>
+            </div>
+            <div class="col">
+                <span style="text-align:center;">
+                    Paid Days : <strong> {{obj.paid_days}} </strong>
+                </span>
+            </div>
+            <div class="col">
+                <span style="text-align:center;">
+                    Loss Of Pay Days : <strong> {{obj.lop_days}} </strong>
+                </span>
+            </div>
+            <div class="col">
+                <span style="text-align:center;">
+                    No. of Leaves : <strong> {{obj.leaves}} </strong>
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="table-responsive">
+            <table class="table table-sm" border="1" style="table-layout: fixed;">
+                <tr>
+                    <th colspan="2"><center>Allowances</center></th>
+                    <th colspan="2"><center>Deductions</center></th>
+                </tr>
+                <tr>
+                    <td>Basic </td>
+                    <td align="right">{{obj.basic}}</td>
+                    <td>Professional tax</td>
+                    <td align="right">{{obj.prof_tax}}</td>
+                </tr>
+                <tr>
+                    <td>HRA </td>
+                    <td align="right">{{obj.hra}}</td>
+                    <td>Income tax</td>
+                    <td align="right">{{obj.income_tax}}</td>
+                </tr>
+                <tr>
+                    <td>Conveyance allowance </td>
+                    <td align="right">{{obj.conveyance_allow}}</td>
+                    <td>Loss of pay</td>
+                    <td align="right">{{obj.loss_of_pay}}</td>
+                </tr>
+                <tr>
+                    <td>Special allowance </td>
+                    <td align="right">{{obj.special_allow}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Gross earning </strong></td>
+                    <td align="right"><strong>{{obj.gross_earning}}</strong></td>
+                    <td><strong>Gross deduction</strong></td>
+                    <td align="right"><strong>{{obj.gross_deduction}}</strong></td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                    <span style="text-align:center;">
+                        Net Salary : <strong>{{obj.net_salary}}</strong>
+                    </span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

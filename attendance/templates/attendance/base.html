@@ -13,6 +13,10 @@
         <!-- Bootstrap Complete CSS V4.0 -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+        <!-- for popper -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
         <!-- Custom styles for this template -->
         <script
             src="http://code.jquery.com/jquery-3.3.1.js"
@@ -28,11 +32,11 @@
              $('#id_mark').on('change',function() {
                  if ($('select[name="mark"]').val() == "0"){
                      $('#id_wt').hide();
-                     $('#id_lt').show();
+                     $('#id_lt').show(500);
                  }
                  if ($('select[name="mark"]').val() == "1"){
                      $('#id_lt').hide();
-                     $('#id_wt').show();
+                     $('#id_wt').show(500);
                  }
                  if ($('select[name="mark"]').val() == ""){
                      $('#id_lt').hide();
@@ -41,6 +45,7 @@
              });
          });
         </script>
+
         <!-- <link href="{% static 'jquery/demo.js' %}" rel="stylesheet"> -->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     </head>
@@ -147,10 +152,23 @@
                 </nav>
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Attendance</h1>
-                        <button type="button" onclick="window.location.href='{% url 'attendance:attendance_history' %}'" class="btn btn-primary">Show Attendance History</button>
+                        <h1 class="h2"><span data-feather="book" style="padding-right:5px;"></span>Attendance</h1>
+                        <!-- <div class="dropdown">
+                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             Attendance History
+                             </button>
+                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                             <a class="dropdown-item" href="#">Action</a>
+                             <a class="dropdown-item" href="#">Another action</a>
+                             <a class="dropdown-item" href="#">Something else here</a>
+                             </div>
+                             </div> -->
+                        <span>
+                            <button type="button" onclick="window.location.href='{% url 'attendance:attendance_history' %}'" class="btn btn-primary"><span data-feather="user">ff</span><span style="padding:3px;">History By Employee</span></button>
+                            <button type="button" onclick="window.location.href='{% url 'attendance:attendance_history_date' %}'" class="btn btn-primary"><span data-feather="calendar">ff</span><span style="padding:3px;">History By Date</span></button>
+                        </span>
                     </div>
-		    {% include 'attendance/messages.html' %}
+                    {% include 'attendance/messages.html' %}
                     {%block content%}
                     {%endblock%}
                 </main>

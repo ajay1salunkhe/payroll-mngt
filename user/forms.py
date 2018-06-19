@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Employee, DesignationHistory, DepartmentHistory, JobTypeHistory, LeaveHistory
+from .models import Employee, DesignationHistory, DepartmentHistory, JobTypeHistory, LeaveHistory, EmployeeSalary
 from company.models import Designation, Department, JobType
 from django import forms
 from django.contrib.auth.models import User
@@ -8,6 +8,7 @@ from django.contrib.admin import widgets
 from django.forms.fields import DateField
 from django.contrib import messages
 from django.shortcuts import redirect
+import datetime
 
 class DateInput(forms.DateInput):
     input_type='date'
@@ -147,6 +148,7 @@ class employee_add_form(forms.ModelForm):
                     'class': 'form-control',
                 }
             ),
+
         }
         
         
@@ -212,4 +214,26 @@ class employee_job_type_form(forms.ModelForm):
 
     def __init__(self,temp,*args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['job_type'].queryset = JobType.objects.filter(company_id=temp)      
+        self.fields['job_type'].queryset = JobType.objects.filter(company_id=temp)
+
+class employee_salary_form(forms.ModelForm):
+    class Meta:
+        model = EmployeeSalary
+        fields = (
+            'salary',
+            'effective_from',
+        )
+        widgets = {
+            'salary': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder':'Enter salary here',
+                    'maxlength':'7'
+                }
+            ),
+            'effective_from': DateInput(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),            
+        }                

@@ -6,7 +6,7 @@ from company.models import Designation, Department, JobType
 from django.contrib.auth.models import User
 from django.views.generic import ListView
 from .forms import employee_add_form, user_add_form
-from .forms import employee_designation_form, employee_department_form, employee_job_type_form
+from .forms import employee_designation_form, employee_department_form, employee_job_type_form, employee_salary_form
 from django.forms import ModelForm
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
@@ -19,18 +19,29 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-
+from django.contrib import messages
+from .resources import EmployeeResource
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def employee_display(request):
     #    queryset = Employee.objects.all()
     queryset = Employee.objects.filter(company_id=request.user.employee.company_id.id)
-    context = {
+    page = request.GET.get('page',1)
 
-        "object_list": queryset,
-    }
-
-    return render(request, "base.html",context)
+    paginator = Paginator(queryset,8)
+    try:
+        emps = paginator.page(page)
+    except PageNotAnInteger:
+        emps = paginator.page(1)
+    except EmptyPage:
+        emps = paginator.page(paginator.num_pages)
+                
+    # context = {
+    #     "object_list": queryset,
+    # }
+    return render(request, "base.html",{"object_list":emps})    
+#    return render(request, "base.html",context)
 
 @login_required
 @transaction.atomic
@@ -44,7 +55,8 @@ def employee_add(request):
             formEmployeeDesignation = employee_designation_form(temp,request.POST)
             formEmployeeDepartment = employee_department_form(temp,request.POST)
             formEmployeeJobType = employee_job_type_form(temp,request.POST)
-            if formUser.is_valid() and formEmployee.is_valid() and formEmployeeDesignation.is_valid() and formEmployeeDepartment.is_valid() and formEmployeeJobType.is_valid() :
+            formEmployeeSalary = employee_salary_form(request.POST)
+            if formUser.is_valid() and formEmployee.is_valid() and formEmployeeDesignation.is_valid() and formEmployeeDepartment.is_valid() and formEmployeeJobType.is_valid() and formEmployeeSalary.is_valid() :
                 objUser = formUser.save(commit=False)
                 plainpass = objUser.password
                 objUser.set_password(objUser.password)
@@ -52,7 +64,14 @@ def employee_add(request):
                 objUser.save()
                 objEmployee.company_id =  request.user.employee.company_id
                 objEmployee.user = objUser
-                objEmployee.save()
+                born = datetime.datetime.strptime(request.POST.get('dob'),"%Y-%m-%d").date()
+                print("born : ",born)
+                today = datetime.datetime.today()
+                age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+                if age >=5 :
+                    objEmployee.save()
+                else:
+                    messages.error(request,"Age should be greater than 5")
                 emp = get_object_or_404(Employee, user_id=objEmployee.user)
                 objEmployeeDesignation = formEmployeeDesignation.save(commit=False)           
                 objEmployeeDesignation.employee = emp
@@ -67,20 +86,25 @@ def employee_add(request):
                 objEmployeeJobType.date = datetime.datetime.now().date()
                 objEmployeeJobType.save()         
                 current_site = get_current_site(request)
-                mail_subject = 'subject----'
+                mail_subject = 'subject ----'
                 to_email = objUser.email
                 message = 'Your username is : '+objUser.username+' and password is : '+plainpass
                 email = EmailMessage(mail_subject, message, to=[to_email])
-                email.send()       
+                email.send()
+                objEmployeeSalary = formEmployeeSalary.save(commit=False)
+                objEmployeeSalary.employee = emp
+                objEmployeeSalary.updation_date = datetime.datetime.now().date()
+                objEmployeeSalary.save()
+                
                 return redirect('employee_display')
         else:
             formUser = user_add_form()
             formEmployee = employee_add_form()
-            print("Designation.objects.last() : ",Designation.objects.last())
             formEmployeeDesignation = employee_designation_form(temp,initial={'designation':Designation.objects.last()})
             formEmployeeDepartment = employee_department_form(temp)
-            formEmployeeJobType = employee_job_type_form(temp)            
-        return render(request, "employee_add.html",{'form1':formUser, 'form2':formEmployee, 'form3':formEmployeeDesignation,  'form4':formEmployeeDepartment,  'form5':formEmployeeJobType})
+            formEmployeeJobType = employee_job_type_form(temp)
+            formEmployeeSalary = employee_salary_form()
+        return render(request, "employee_add.html",{'form1':formUser, 'form2':formEmployee, 'form3':formEmployeeDesignation,  'form4':formEmployeeDepartment,  'form5':formEmployeeJobType, 'form6':formEmployeeSalary })
 
     return redirect('employee_display')
 
@@ -142,7 +166,8 @@ def employee_update(request, pk):
             formEmployee = employee_add_form(request.POST or None,request.FILES,instance=emp)
             formEmployeeDesignation = employee_designation_form(temp,request.POST)
             formEmployeeDepartment = employee_department_form(temp,request.POST)
-            formEmployeeJobType = employee_job_type_form(temp,request.POST)            
+            formEmployeeJobType = employee_job_type_form(temp,request.POST)
+            formEmployeeSalary = employee_salary_form(request.POST)            
             if formUser.is_valid() and formEmployee.is_valid():
                 objUser = formUser.save(commit=False)
                 objUser.set_password(objUser.password)                
@@ -163,7 +188,8 @@ def employee_update(request, pk):
                 objEmployeeJobType = formEmployeeJobType.save(commit=False)
                 objEmployeeJobType.employee = emp
                 objEmployeeJobType.date = datetime.datetime.now().date()
-                objEmployeeJobType.save()                                
+                objEmployeeJobType.save()
+                
                 return redirect('employee_display')
         else:
             formUser=user_add_form(instance=usr)
@@ -171,8 +197,23 @@ def employee_update(request, pk):
             formEmployeeDesignation = employee_designation_form(temp,initial=dictDes)
             formEmployeeDepartment = employee_department_form(temp,initial=dictDept)
             formEmployeeJobType = employee_job_type_form(temp,initial=dictJobtype)
+
             
     return render(request, "employee_add.html",{'form1':formUser, 'form2':formEmployee, 'form3':formEmployeeDesignation, 'form4':formEmployeeDepartment,  'form5':formEmployeeJobType})
 
+def export_to_csv_employee(request):
+    res = EmployeeResource()
+    emps = Employee.objects.filter(company_id=request.user.employee.company_id)
+    dataset = res.export(emps)
+    response = HttpResponse(dataset.csv, content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="employees.csv"'
+    return response
 
+def export_to_excel_employee(request):
+    res = EmployeeResource()
+    emps = Employee.objects.filter(company_id=request.user.employee.company_id)
+    dataset = res.export(emps)
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="employees.xls"'
+    return response
 

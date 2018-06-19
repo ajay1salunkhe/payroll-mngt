@@ -1,0 +1,57 @@
+{% extends 'payroll/base.html'%}
+{% load staticfiles %}
+
+{% block content %}
+<div>
+    <button class="btn btn-lg btn-info" type="button"  onclick="window.location.href='{% url 'salary_update' %}'" style="margin-top:10px; float: right; margin-bottom: 10px;" id="button_update">Update Salary</button>
+</div>
+<div>
+    <div style="margin-left :30%;">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Select Employee : </span>
+                    </div>
+                    <span style="width:30%;">
+                        {{ form1.employee }}
+                    </span>
+                </div>
+                <span>
+                    <button class="btn btn-lg btn-primary" type="submit" style="margin-top:10px; margin-left:17%; margin-bottom: 10px;">Show</button>
+                </span>
+        </form>
+
+    </div>
+</div>
+<div>
+    Showing results for <strong> {{empname}} </strong>
+</div>
+<div>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm" id="tbl">
+            <thead>
+                <tr>
+                    <th>Updation Date</th>
+                    <th>Effective From</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+
+            {% for obj in object_list %}
+            <tbody id="myTable">
+                <tr>
+                    <td>{{obj.updation_date}}</td>
+                    <td>{{obj.effective_from}}</td>
+                    <td>{{obj.salary}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}

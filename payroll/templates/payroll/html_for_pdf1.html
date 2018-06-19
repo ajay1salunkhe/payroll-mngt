@@ -46,7 +46,7 @@
                 </td>
                 <td>
                     <span style="text-align:center;">
-                        Salary Date : <strong> {{ salary_date }} </strong>
+                        Salary Date : <strong> {{ obj.date }} </strong>
                     </span>
                 </td>
             </tr>
@@ -57,7 +57,7 @@
             <tr>
                 <td>
                     <span style="text-align:center;">
-                        Working Days : <strong> {{ working_days }} </strong>
+                        Working Days : <strong> {{ obj.working_days }} </strong>
                     </span>
                 </td>
                 <td>
@@ -69,19 +69,19 @@
             <tr>
                 <td>
                     <span style="text-align:center;">
-                        Paid Days :<strong> {{ paid_days }} </strong>
+                        Paid Days :<strong> {{ obj.paid_days }} </strong>
                     </span>
                 </td>
                 <td>
                     <span style="text-align:center;">
-                        Loss of pay Days : <strong>{{ lop_days }}</strong>
+                        Loss of pay Days : <strong>{{ obj.lop_days }}</strong>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span style="text-align:center;">
-                        No of Leaves : <strong>{{ leaves }}</strong>
+                        No of Leaves : <strong>{{ obj.leaves }}</strong>
                     </span>
                 </td>
                 <td>
@@ -100,33 +100,33 @@
                 </tr>
                 <tr>
                     <td>Basic </td>
-                    <td style="text-align:right;padding-right:7px;">{{ basic }}</td>
+                    <td style="text-align:right;padding-right:7px;">{{ obj.basic }}</td>
                     <td>Professional tax</td>
-                    <td style="text-align:right;padding-right:7px;">{{ proff_tax }}</td>
+                    <td style="text-align:right;padding-right:7px;">{{ obj.prof_tax }}</td>
                 </tr>
                 <tr>
                     <td>HRA </td>
-                    <td style="text-align:right;padding-right:7px;">{{ hra }}</td>
+                    <td style="text-align:right;padding-right:7px;">{{ obj.hra }}</td>
                     <td>Income tax</td>
-                    <td style="text-align:right;padding-right:7px;">{{ income_tax }}</td>
+                    <td style="text-align:right;padding-right:7px;">{{ obj.income_tax }}</td>
                 </tr>
                 <tr>
                     <td>Conveyance allowance </td>
-                    <td style="text-align:right;padding-right:7px;">{{ convey_allow }}</td>
+                    <td style="text-align:right;padding-right:7px;">{{ obj.conveyance_allow }}</td>
                     <td>Loss of pay</td>
-                    <td style="text-align:right;padding-right:7px;">{{ lop }}</td>
+                    <td style="text-align:right;padding-right:7px;">{{ obj.loss_of_pay }}</td>
                 </tr>
                 <tr>
                     <td>Special allowance </td>
-                    <td style="text-align:right;padding-right:7px;">{{ special_allow }}</td>
+                    <td style="text-align:right;padding-right:7px;">{{ obj.special_allow }}</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td><strong>Gross earning </strong></td>
-                    <td style="text-align:right;padding-right:7px;"><strong>{{ gross_earning }}</strong></td>
+                    <td style="text-align:right;padding-right:7px;"><strong>{{ obj.gross_earning }}</strong></td>
                     <td><strong>Gross deduction</strong></td>
-                    <td style="text-align:right;padding-right:7px;"><strong>{{ gross_deduction }}</strong></td>
+                    <td style="text-align:right;padding-right:7px;"><strong>{{ obj.gross_deduction }}</strong></td>
                 </tr>
             </table>
         </div>
@@ -134,7 +134,7 @@
         <div class="row">
             <div class="col">
                     <span style="font-size:20px;text-align:center;">
-                        Net Salary : <strong>{{ net_salary }}</strong> <span style="font-size:17px;">({{ net_salary_in_words }})</span>
+                        Net Salary : <strong>{{ obj.net_salary }}</strong> <span style="font-size:17px;">({{ net_salary_in_words }})</span>
                     </span>
             </div>
         </div>

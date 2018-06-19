@@ -42,8 +42,11 @@ INSTALLED_APPS = [
     'user',
     'attendance',
     'login',
+    'import_export',
     #'accounts',
 ]
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

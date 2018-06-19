@@ -124,8 +124,8 @@
                 </nav>
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Company Details</h1>
-                        <button type="button" onclick="window.location.href='{% url 'company:company_edit' %}'" class="btn btn-primary">Edit Company</button>
+                        <h1 class="h2"><span data-feather="briefcase" style="padding-left:5px;"></span>Company Details</h1>
+                        <button type="button" onclick="window.location.href='{% url 'company:company_edit' %}'" class="btn btn-primary"><span data-feather="edit" style="margin-right:5px;"></span>Edit Company</button>
                     </div>
                     {%block content%}
                     {%endblock%}
