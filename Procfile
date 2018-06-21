@@ -1,1 +1,2 @@
-web: gunicorn payroll.wsgi
+web: gunicorn mysite.wsgi
+web: gunicorn mysite.settings
