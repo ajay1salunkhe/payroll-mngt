@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'user',
     'attendance',
     'login',
-    'import_export',
+#    'import_export',
     #'accounts',
 ]
 
