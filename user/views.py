@@ -20,7 +20,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.contrib import messages
-from .resources import EmployeeResource
+#from .resources import EmployeeResource
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required

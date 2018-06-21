@@ -14,7 +14,7 @@ import calendar
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-from num2words import num2words
+#from num2words import num2words
 
 from weasyprint import HTML
 
@@ -26,7 +26,7 @@ from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
-from .resources import SalaryHistoryResource
+#from .resources import SalaryHistoryResource
 
 @login_required
 def salary(request):
@@ -164,7 +164,7 @@ def print_it(request,pk,month_year):
                                        # "gross_earning":gross_earning,
                                        # "gross_deduction":gross_deduction,
                                        # "net_salary":net_salary,
-                                       "net_salary_in_words":num2words(history.net_salary),
+                                       "net_salary_in_words": "----",#num2words(history.net_salary),
                                        "obj":history,
                                        "pdf_gen_time":datetime.datetime.now(),
                                    }
@@ -362,7 +362,7 @@ def salary_emp_details(request,pk,month,year):
                                            "gross_earning":gross_earning,
                                            "gross_deduction":gross_deduction,
                                            "net_salary":net_salary,
-                                           "net_salary_in_words":num2words(net_salary),
+                                           "net_salary_in_words":"----",#num2words(net_salary),
                                            "pdf_gen_time":datetime.datetime.now(),
                                        }
         )
@@ -415,7 +415,7 @@ def salary_emp_details(request,pk,month,year):
                       "gross_earning":gross_earning,
                       "gross_deduction":gross_deduction,
                       "net_salary":net_salary,
-                      "net_salary_in_words":num2words(net_salary),
+                      "net_salary_in_words":"----", #num2words(net_salary),
                   }
     )
    except e as Exception:
