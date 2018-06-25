@@ -45,7 +45,7 @@ class Employee(models.Model):
         return self.name
 #-----------------------------------------------------------------------------------------------------------------------
 class EmployeeSalary(models.Model):
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     salary = models.DecimalField(decimal_places = 2,
                                  max_digits = 10,
                                  default = decimal.Decimal('0.0000000000')
@@ -71,7 +71,7 @@ class EmployeeSalary(models.Model):
 #     instance.employee.save()
 #-----------------------------------------------------------------------------------------------------------------------
 class DesignationHistory(models.Model):
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     designation = models.ForeignKey(Designation,null=True)
     date = models.DateField()
     
@@ -82,7 +82,7 @@ class DesignationHistory(models.Model):
         return self.employee.name+" 's Designation History details on date :  "+str(self.date)
 #-----------------------------------------------------------------------------------------------------------------------
 class DepartmentHistory(models.Model):
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     department = models.ForeignKey(Department,null=True)
     date = models.DateField()
     
@@ -93,7 +93,7 @@ class DepartmentHistory(models.Model):
         return self.employee.name+" 's Department History details on date :  "+str(self.date)
 #-----------------------------------------------------------------------------------------------------------------------
 class JobTypeHistory(models.Model):
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     job_type = models.ForeignKey(JobType, null=True)
     date = models.DateField()
 
@@ -104,7 +104,7 @@ class JobTypeHistory(models.Model):
         return self.employee.name+" 's Job Type History details on date :  "+str(self.date)
 #-----------------------------------------------------------------------------------------------------------------------
 class LeaveHistory(models.Model):
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     attendance = models.ForeignKey("attendance.Attendance")
     date = models.DateField()
     privilege_leave = models.PositiveSmallIntegerField()
