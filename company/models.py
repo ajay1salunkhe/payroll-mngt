@@ -28,7 +28,7 @@ class Company(models.Model):
         return self.namec
 #-----------------------------------------------------------------------------------------------------------------------
 class Holiday(models.Model):
-    company = models.ForeignKey(Company)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     date = models.DateField()
     name = models.CharField(max_length = 50)
     
@@ -39,7 +39,7 @@ class Holiday(models.Model):
         return self.company.namec+" job Holiday on date  "+str(datetime.now())
 #-----------------------------------------------------------------------------------------------------------------------
 class WorkType(models.Model):
-    company = models.ForeignKey(Company)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     wt_choices = (('SunHol','Sunday Holiday'),
                       ('SatSunHol','Sat-Sun Holiday')
                      )
@@ -52,7 +52,7 @@ class WorkType(models.Model):
         return self.work_type
 #-----------------------------------------------------------------------------------------------------------------------
 class Designation(models.Model):
-    company = models.ForeignKey(Company)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     designation = models.CharField(max_length = 50)
     privilege_leave = models.PositiveSmallIntegerField()
     casual_leave = models.PositiveSmallIntegerField()
@@ -68,7 +68,7 @@ class Designation(models.Model):
         return self.designation
 #-----------------------------------------------------------------------------------------------------------------------
 class Department(models.Model):
-    company = models.ForeignKey(Company)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     department = models.CharField(max_length = 20)
     
     def publish(self):
@@ -77,7 +77,7 @@ class Department(models.Model):
         return self.department
 #-----------------------------------------------------------------------------------------------------------------------
 class JobType(models.Model):
-    company = models.ForeignKey(Company)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     job_type = models.CharField(max_length = 20)
 
     def publish(self):
