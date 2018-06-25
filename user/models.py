@@ -13,7 +13,7 @@ class Employee(models.Model):
     '''
        stores all the personal info about employee and its job description
     '''
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User)
     name = models.CharField(max_length=30)
     address = models.TextField(max_length=50,null=True)
     contact = models.CharField(max_length=15)
@@ -38,7 +38,7 @@ class Employee(models.Model):
                                    )
     probation_period = models.PositiveSmallIntegerField(default=0)
     is_admin = models.NullBooleanField()
-    company_id = models.ForeignKey('company.Company')
+    company_id = models.ForeignKey('company.Company', on_delete=models.CASCADE)
     
 
     def __str__(self):
