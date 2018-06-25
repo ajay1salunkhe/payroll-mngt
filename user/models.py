@@ -72,7 +72,7 @@ class EmployeeSalary(models.Model):
 #-----------------------------------------------------------------------------------------------------------------------
 class DesignationHistory(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    designation = models.ForeignKey(Designation,null=True)
+    designation = models.ForeignKey(Designation,null=True, on_delete=models.CASCADE)
     date = models.DateField()
     
     def publish(self):
@@ -83,7 +83,7 @@ class DesignationHistory(models.Model):
 #-----------------------------------------------------------------------------------------------------------------------
 class DepartmentHistory(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    department = models.ForeignKey(Department,null=True)
+    department = models.ForeignKey(Department,null=True, on_delete=models.CASCADE)
     date = models.DateField()
     
     def publish(self):
@@ -94,7 +94,7 @@ class DepartmentHistory(models.Model):
 #-----------------------------------------------------------------------------------------------------------------------
 class JobTypeHistory(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    job_type = models.ForeignKey(JobType, null=True)
+    job_type = models.ForeignKey(JobType, null=True, on_delete=models.CASCADE)
     date = models.DateField()
 
     def publish(self):
@@ -105,7 +105,7 @@ class JobTypeHistory(models.Model):
 #-----------------------------------------------------------------------------------------------------------------------
 class LeaveHistory(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    attendance = models.ForeignKey("attendance.Attendance")
+    attendance = models.ForeignKey("attendance.Attendance", on_delete=models.CASCADE)
     date = models.DateField()
     privilege_leave = models.PositiveSmallIntegerField()
     casual_leave = models.PositiveSmallIntegerField()
