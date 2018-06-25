@@ -13,7 +13,7 @@ class Employee(models.Model):
     '''
        stores all the personal info about employee and its job description
     '''
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     address = models.TextField(max_length=50,null=True)
     contact = models.CharField(max_length=15)
