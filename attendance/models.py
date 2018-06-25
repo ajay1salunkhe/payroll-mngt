@@ -9,7 +9,7 @@ from company.models import WorkType
 #-----------------------------------------------------------------------------------------------------------------------
 class Attendance(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    work_type = models.ForeignKey(WorkType,null=True,blank=True)
+    work_type = models.ForeignKey(WorkType,null=True,blank=True, on_delete=models.CASCADE)
     date = models.DateField()
     mark_choices = (
         (0,'Absent'),
