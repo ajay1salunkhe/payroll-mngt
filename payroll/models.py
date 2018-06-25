@@ -13,7 +13,7 @@ class Salary(models.Model):
     '''
     salary related info of employee like gross,net  salary, allowances and deductions 
     '''
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     date = models.DateField()
     basic_salary_perc = models.FloatField(validators=[MaxValueValidator(100), MinValueValidator(0)],default=45)
 
@@ -43,7 +43,7 @@ class SalaryHistory(models.Model):
     '''
     salary related info of employee like gross,net  salary, allowances and deductions 
     '''
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     date = models.DateField()
     month_year = models.CharField(max_length=10,default="")
     basic_perc = models.FloatField(validators=[MaxValueValidator(100), MinValueValidator(0)])
