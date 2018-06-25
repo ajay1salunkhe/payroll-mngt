@@ -8,7 +8,7 @@ from company.models import WorkType
 
 #-----------------------------------------------------------------------------------------------------------------------
 class Attendance(models.Model):
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     work_type = models.ForeignKey(WorkType,null=True,blank=True)
     date = models.DateField()
     mark_choices = (
@@ -36,7 +36,7 @@ class Attendance(models.Model):
         return self.employee.name+" 's attendance details on  "+str(self.date)
 #-----------------------------------------------------------------------------------------------------------------------
 class LeaveApplication(models.Model):
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     leave_from = models.DateField()
     leave_to = models.DateField()
     leave_type = models.CharField(max_length = 20)
