@@ -12,7 +12,7 @@ ipaddress==1.0.22
 Pillow==5.1.0
 pycparser==2.18
 PyGoogleVoice==0.5.2
-PyJWT==1.6.4
+PyJWT==2.4.0
 pyOpenSSL==18.0.0
 pytz==2018.4
 requests==2.18.4
